@@ -1,0 +1,77 @@
+{
+  "coleta": "2026-03-02T23:59:00",
+  "equipamentos": [
+    {
+      "nome": "OLT-CENTRO-01",
+      "tipo": "OLT",
+      "localidade": "Centro",
+      "ip": "10.0.1.10",
+      "fabricante": "Datacom",
+      "portas": 24,
+      "em_servico": true
+    },
+    {
+      "nome": "OLT-NORTE-02",
+      "tipo": "OLT",
+      "localidade": "Zona Norte",
+      "ip": "10.0.2.10",
+      "fabricante": "Huawei",
+      "portas": 24,
+      "em_servico": true
+    },
+    {
+      "nome": "OLT-SUL-03",
+      "tipo": "OLT",
+      "localidade": "Zona Sul",
+      "ip": "10.0.3.10",
+      "fabricante": "Furukawa",
+      "portas": 24,
+      "em_servico": true
+    },
+    {
+      "nome": "SWITCH-CENTRO-01",
+      "tipo": "SWITCH",
+      "localidade": "Centro",
+      "ip": "10.0.1.20",
+      "fabricante": "ZTE",
+      "portas": 24,
+      "em_servico": false
+    },
+    {
+      "nome": "SWITCH-NORTE-02",
+      "tipo": "SWITCH",
+      "localidade": "Zona Norte",
+      "ip": "10.0.2.20",
+      "fabricante": "Datacom",
+      "portas": 8,
+      "em_servico": true
+    },
+    {
+      "nome": "ONU-SUL-4512",
+      "tipo": "ONU",
+      "localidade": "Zona Sul",
+      "ip": "10.0.3.47",
+      "fabricante": "Furukawa",
+      "portas": 16,
+      "em_servico": true
+    },
+    {
+      "nome": "ONU-LESTE-77",
+      "tipo": "ONU",
+      "localidade": "Zona Leste",
+      "ip": "10.0.4.77",
+      "fabricante": "Furukawa",
+      "portas": 48,
+      "em_servico": true
+    },
+    {
+      "nome": "RADIO-OESTE-01",
+      "tipo": "RADIO",
+      "localidade": "Zona Oeste",
+      "ip": "10.0.5.10",
+      "fabricante": "Furukawa",
+      "portas": 24,
+      "em_servico": true
+    }
+  ]
+}

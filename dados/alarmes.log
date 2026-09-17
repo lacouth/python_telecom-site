@@ -1,0 +1,200 @@
+2026-03-02 00:00:52 WARNING OLT-CENTRO-01 utilizacao da interface em 94%
+2026-03-02 00:08:21 INFO OLT-CENTRO-01 configuracao salva
+2026-03-02 00:19:41 CRITICAL RADIO-OESTE-01 equipamento sem resposta ha 25 minutos
+2026-03-02 00:20:17 CRITICAL SWITCH-NORTE-02 equipamento sem resposta ha 17 minutos
+2026-03-02 00:33:15 INFO ONU-SUL-4512 porta GPON0/1/7 ativada
+2026-03-02 00:36:17 WARNING SWITCH-NORTE-02 potencia optica degradada: -25.0 dBm
+2026-03-02 00:37:47 WARNING ONU-LESTE-77 potencia optica degradada: -26.7 dBm
+2026-03-02 00:50:38 WARNING ONU-SUL-4512 potencia optica degradada: -28.6 dBm
+2026-03-02 01:03:24 INFO SWITCH-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/6
+2026-03-02 01:05:11 CRITICAL SWITCH-CENTRO-01 equipamento sem resposta ha 41 minutos
+2026-03-02 01:14:57 WARNING OLT-SUL-03 potencia optica degradada: -27.8 dBm
+2026-03-02 01:21:40 WARNING SWITCH-NORTE-02 potencia optica degradada: -25.2 dBm
+2026-03-02 01:33:06 WARNING OLT-NORTE-02 temperatura acima do limite: 64 C
+2026-03-02 01:43:36 INFO OLT-SUL-03 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 01:54:03 CRITICAL SWITCH-CENTRO-01 perda de sinal na porta GPON0/1/7
+2026-03-02 02:07:14 INFO ONU-LESTE-77 configuracao salva
+2026-03-02 02:18:42 CRITICAL RADIO-OESTE-01 perda de sinal na porta GPON0/1/3
+2026-03-02 02:20:33 CRITICAL OLT-CENTRO-01 perda de sinal na porta GPON0/1/6
+2026-03-02 02:29:14 WARNING ONU-SUL-4512 temperatura acima do limite: 78 C
+2026-03-02 02:42:07 CRITICAL ONU-SUL-4512 equipamento sem resposta ha 23 minutos
+2026-03-02 02:49:44 INFO ONU-SUL-4512 porta GPON0/1/2 ativada
+2026-03-02 02:57:24 INFO ONU-LESTE-77 porta GPON0/1/7 ativada
+2026-03-02 03:11:50 CRITICAL RADIO-OESTE-01 perda de sinal na porta GPON0/1/5
+2026-03-02 03:19:28 INFO OLT-NORTE-02 porta GPON0/1/7 ativada
+2026-03-02 03:28:43 CRITICAL RADIO-OESTE-01 equipamento sem resposta ha 3 minutos
+2026-03-02 03:36:14 INFO ONU-SUL-4512 configuracao salva
+2026-03-02 03:50:02 WARNING SWITCH-NORTE-02 utilizacao da interface em 92%
+2026-03-02 03:52:20 INFO OLT-SUL-03 configuracao salva
+2026-03-02 04:02:22 CRITICAL SWITCH-CENTRO-01 equipamento sem resposta ha 22 minutos
+2026-03-02 04:13:46 WARNING OLT-CENTRO-01 temperatura acima do limite: 78 C
+2026-03-02 04:28:36 CRITICAL OLT-CENTRO-01 equipamento sem resposta ha 8 minutos
+2026-03-02 04:36:25 INFO SWITCH-NORTE-02 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 04:39:56 CRITICAL ONU-LESTE-77 perda de sinal na porta GPON0/1/1
+2026-03-02 04:41:35 WARNING OLT-SUL-03 temperatura acima do limite: 77 C
+2026-03-02 04:43:56 WARNING SWITCH-CENTRO-01 potencia optica degradada: -27.2 dBm
+2026-03-02 04:57:53 INFO SWITCH-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/3
+2026-03-02 05:05:55 WARNING ONU-LESTE-77 temperatura acima do limite: 73 C
+2026-03-02 05:17:35 CRITICAL OLT-NORTE-02 perda de sinal na porta GPON0/1/8
+2026-03-02 05:18:34 CRITICAL RADIO-OESTE-01 perda de sinal na porta GPON0/1/7
+2026-03-02 05:23:46 WARNING ONU-LESTE-77 temperatura acima do limite: 75 C
+2026-03-02 05:30:00 INFO RADIO-OESTE-01 alarme CRITICAL encerrado na porta GPON0/1/6
+2026-03-02 05:40:27 WARNING OLT-NORTE-02 temperatura acima do limite: 75 C
+2026-03-02 05:46:03 WARNING RADIO-OESTE-01 temperatura acima do limite: 66 C
+2026-03-02 06:00:35 WARNING OLT-NORTE-02 utilizacao da interface em 95%
+2026-03-02 06:08:04 WARNING OLT-NORTE-02 potencia optica degradada: -28.4 dBm
+2026-03-02 06:10:52 INFO OLT-NORTE-02 configuracao salva
+2026-03-02 06:13:06 CRITICAL OLT-CENTRO-01 equipamento sem resposta ha 30 minutos
+2026-03-02 06:21:21 CRITICAL RADIO-OESTE-01 equipamento sem resposta ha 7 minutos
+2026-03-02 06:35:56 CRITICAL RADIO-OESTE-01 equipamento sem resposta ha 37 minutos
+2026-03-02 06:46:31 CRITICAL SWITCH-CENTRO-01 equipamento sem resposta ha 34 minutos
+2026-03-02 06:49:25 CRITICAL OLT-CENTRO-01 perda de sinal na porta GPON0/1/1
+2026-03-02 06:52:26 CRITICAL OLT-CENTRO-01 equipamento sem resposta ha 2 minutos
+2026-03-02 07:05:45 WARNING ONU-LESTE-77 temperatura acima do limite: 70 C
+2026-03-02 07:08:26 WARNING OLT-SUL-03 temperatura acima do limite: 76 C
+2026-03-02 07:18:25 INFO ONU-LESTE-77 alarme CRITICAL encerrado na porta GPON0/1/8
+2026-03-02 07:26:44 CRITICAL ONU-SUL-4512 equipamento sem resposta ha 42 minutos
+2026-03-02 07:36:57 WARNING ONU-SUL-4512 utilizacao da interface em 97%
+2026-03-02 07:41:28 INFO RADIO-OESTE-01 porta GPON0/1/6 ativada
+2026-03-02 07:54:01 WARNING OLT-NORTE-02 utilizacao da interface em 96%
+2026-03-02 08:03:54 INFO OLT-NORTE-02 configuracao salva
+2026-03-02 08:15:40 WARNING ONU-LESTE-77 potencia optica degradada: -25.2 dBm
+2026-03-02 08:21:34 CRITICAL OLT-SUL-03 equipamento sem resposta ha 41 minutos
+2026-03-02 08:26:31 WARNING OLT-CENTRO-01 utilizacao da interface em 92%
+2026-03-02 08:39:44 CRITICAL SWITCH-CENTRO-01 perda de sinal na porta GPON0/1/3
+2026-03-02 08:53:04 INFO OLT-CENTRO-01 configuracao salva
+2026-03-02 08:53:42 CRITICAL ONU-LESTE-77 equipamento sem resposta ha 40 minutos
+2026-03-02 08:59:00 INFO SWITCH-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/7
+2026-03-02 09:01:59 INFO OLT-NORTE-02 alarme CRITICAL encerrado na porta GPON0/1/7
+2026-03-02 09:11:00 WARNING OLT-CENTRO-01 temperatura acima do limite: 68 C
+2026-03-02 09:16:37 INFO OLT-CENTRO-01 porta GPON0/1/2 ativada
+2026-03-02 09:30:26 CRITICAL ONU-LESTE-77 equipamento sem resposta ha 39 minutos
+2026-03-02 09:37:07 WARNING ONU-SUL-4512 utilizacao da interface em 88%
+2026-03-02 09:43:46 INFO OLT-SUL-03 configuracao salva
+2026-03-02 09:52:38 INFO OLT-SUL-03 configuracao salva
+2026-03-02 09:55:56 WARNING SWITCH-CENTRO-01 potencia optica degradada: -28.7 dBm
+2026-03-02 10:02:03 INFO SWITCH-NORTE-02 porta GPON0/1/6 ativada
+2026-03-02 10:11:14 WARNING OLT-SUL-03 utilizacao da interface em 97%
+2026-03-02 10:22:00 INFO OLT-CENTRO-01 configuracao salva
+2026-03-02 10:31:31 INFO OLT-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 10:41:04 WARNING ONU-SUL-4512 potencia optica degradada: -26.5 dBm
+2026-03-02 10:48:00 CRITICAL OLT-NORTE-02 perda de sinal na porta GPON0/1/5
+2026-03-02 10:58:48 WARNING OLT-SUL-03 temperatura acima do limite: 73 C
+2026-03-02 11:01:23 CRITICAL RADIO-OESTE-01 perda de sinal na porta GPON0/1/1
+2026-03-02 11:15:13 CRITICAL SWITCH-CENTRO-01 equipamento sem resposta ha 14 minutos
+2026-03-02 11:29:19 INFO OLT-NORTE-02 alarme CRITICAL encerrado na porta GPON0/1/5
+2026-03-02 11:33:25 INFO ONU-LESTE-77 alarme CRITICAL encerrado na porta GPON0/1/4
+2026-03-02 11:47:54 INFO ONU-SUL-4512 configuracao salva
+2026-03-02 11:57:34 WARNING ONU-SUL-4512 potencia optica degradada: -27.1 dBm
+2026-03-02 12:04:27 WARNING SWITCH-NORTE-02 temperatura acima do limite: 74 C
+2026-03-02 12:08:03 INFO ONU-SUL-4512 configuracao salva
+2026-03-02 12:22:44 WARNING SWITCH-CENTRO-01 potencia optica degradada: -25.3 dBm
+2026-03-02 12:29:01 INFO OLT-CENTRO-01 configuracao salva
+2026-03-02 12:34:55 WARNING SWITCH-NORTE-02 utilizacao da interface em 95%
+2026-03-02 12:49:44 WARNING OLT-SUL-03 potencia optica degradada: -25.4 dBm
+2026-03-02 12:54:52 WARNING SWITCH-CENTRO-01 potencia optica degradada: -27.9 dBm
+2026-03-02 12:55:25 WARNING OLT-CENTRO-01 utilizacao da interface em 89%
+2026-03-02 13:09:23 INFO OLT-CENTRO-01 porta GPON0/1/5 ativada
+2026-03-02 13:10:09 INFO RADIO-OESTE-01 alarme CRITICAL encerrado na porta GPON0/1/2
+2026-03-02 13:21:35 INFO RADIO-OESTE-01 porta GPON0/1/3 ativada
+2026-03-02 13:27:19 CRITICAL SWITCH-CENTRO-01 equipamento sem resposta ha 16 minutos
+2026-03-02 13:27:52 WARNING ONU-SUL-4512 temperatura acima do limite: 70 C
+2026-03-02 13:39:18 WARNING SWITCH-NORTE-02 temperatura acima do limite: 74 C
+2026-03-02 13:40:09 CRITICAL ONU-LESTE-77 perda de sinal na porta GPON0/1/4
+2026-03-02 13:46:10 WARNING ONU-SUL-4512 potencia optica degradada: -27.5 dBm
+2026-03-02 13:58:46 INFO SWITCH-CENTRO-01 configuracao salva
+2026-03-02 14:02:41 INFO RADIO-OESTE-01 porta GPON0/1/7 ativada
+2026-03-02 14:12:14 WARNING RADIO-OESTE-01 utilizacao da interface em 91%
+2026-03-02 14:12:46 CRITICAL ONU-LESTE-77 equipamento sem resposta ha 10 minutos
+2026-03-02 14:23:14 CRITICAL ONU-LESTE-77 equipamento sem resposta ha 29 minutos
+2026-03-02 14:37:03 INFO RADIO-OESTE-01 configuracao salva
+2026-03-02 14:37:38 INFO SWITCH-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/4
+2026-03-02 14:47:09 WARNING ONU-LESTE-77 temperatura acima do limite: 64 C
+2026-03-02 14:49:27 INFO SWITCH-NORTE-02 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 15:01:36 INFO OLT-SUL-03 porta GPON0/1/1 ativada
+2026-03-02 15:06:38 CRITICAL ONU-SUL-4512 perda de sinal na porta GPON0/1/6
+2026-03-02 15:14:54 INFO OLT-SUL-03 alarme CRITICAL encerrado na porta GPON0/1/6
+2026-03-02 15:21:18 WARNING RADIO-OESTE-01 temperatura acima do limite: 68 C
+2026-03-02 15:25:55 INFO SWITCH-CENTRO-01 porta GPON0/1/6 ativada
+2026-03-02 15:36:16 WARNING RADIO-OESTE-01 temperatura acima do limite: 74 C
+2026-03-02 15:43:23 WARNING OLT-CENTRO-01 temperatura acima do limite: 74 C
+2026-03-02 15:56:12 CRITICAL ONU-LESTE-77 perda de sinal na porta GPON0/1/2
+2026-03-02 16:10:48 WARNING ONU-SUL-4512 temperatura acima do limite: 68 C
+2026-03-02 16:21:40 INFO OLT-NORTE-02 configuracao salva
+2026-03-02 16:34:32 INFO SWITCH-NORTE-02 alarme CRITICAL encerrado na porta GPON0/1/5
+2026-03-02 16:44:12 WARNING SWITCH-NORTE-02 utilizacao da interface em 86%
+2026-03-02 16:53:07 WARNING RADIO-OESTE-01 potencia optica degradada: -28.5 dBm
+2026-03-02 16:57:13 CRITICAL OLT-SUL-03 equipamento sem resposta ha 6 minutos
+2026-03-02 16:57:45 WARNING SWITCH-NORTE-02 temperatura acima do limite: 63 C
+2026-03-02 17:06:46 CRITICAL RADIO-OESTE-01 equipamento sem resposta ha 22 minutos
+2026-03-02 17:08:50 WARNING ONU-LESTE-77 utilizacao da interface em 95%
+2026-03-02 17:14:58 WARNING OLT-SUL-03 potencia optica degradada: -27.6 dBm
+2026-03-02 17:21:03 WARNING OLT-SUL-03 utilizacao da interface em 95%
+2026-03-02 17:28:15 CRITICAL SWITCH-NORTE-02 equipamento sem resposta ha 39 minutos
+2026-03-02 17:31:30 CRITICAL OLT-CENTRO-01 equipamento sem resposta ha 41 minutos
+2026-03-02 17:36:29 WARNING RADIO-OESTE-01 utilizacao da interface em 94%
+2026-03-02 17:37:18 WARNING SWITCH-CENTRO-01 temperatura acima do limite: 64 C
+2026-03-02 17:40:27 INFO ONU-LESTE-77 alarme CRITICAL encerrado na porta GPON0/1/6
+2026-03-02 17:43:09 WARNING ONU-SUL-4512 temperatura acima do limite: 78 C
+2026-03-02 17:47:07 CRITICAL ONU-SUL-4512 perda de sinal na porta GPON0/1/8
+2026-03-02 17:56:32 CRITICAL ONU-SUL-4512 equipamento sem resposta ha 26 minutos
+2026-03-02 18:02:37 CRITICAL SWITCH-NORTE-02 equipamento sem resposta ha 40 minutos
+2026-03-02 18:15:03 WARNING SWITCH-CENTRO-01 utilizacao da interface em 85%
+2026-03-02 18:27:10 INFO RADIO-OESTE-01 porta GPON0/1/6 ativada
+2026-03-02 18:34:40 INFO OLT-CENTRO-01 configuracao salva
+2026-03-02 18:36:48 CRITICAL SWITCH-CENTRO-01 perda de sinal na porta GPON0/1/4
+2026-03-02 18:46:16 CRITICAL SWITCH-NORTE-02 perda de sinal na porta GPON0/1/8
+2026-03-02 18:48:39 WARNING OLT-CENTRO-01 utilizacao da interface em 89%
+2026-03-02 19:02:39 CRITICAL RADIO-OESTE-01 equipamento sem resposta ha 38 minutos
+2026-03-02 19:17:08 WARNING ONU-SUL-4512 temperatura acima do limite: 71 C
+2026-03-02 19:23:10 WARNING OLT-SUL-03 temperatura acima do limite: 68 C
+2026-03-02 19:24:14 INFO SWITCH-CENTRO-01 porta GPON0/1/4 ativada
+2026-03-02 19:34:51 WARNING RADIO-OESTE-01 utilizacao da interface em 95%
+2026-03-02 19:38:51 INFO SWITCH-CENTRO-01 configuracao salva
+2026-03-02 19:45:26 CRITICAL SWITCH-CENTRO-01 equipamento sem resposta ha 16 minutos
+2026-03-02 19:47:55 CRITICAL SWITCH-NORTE-02 equipamento sem resposta ha 30 minutos
+2026-03-02 19:49:45 WARNING SWITCH-NORTE-02 temperatura acima do limite: 78 C
+2026-03-02 19:50:20 WARNING SWITCH-NORTE-02 temperatura acima do limite: 73 C
+2026-03-02 19:59:33 WARNING SWITCH-CENTRO-01 utilizacao da interface em 94%
+2026-03-02 20:06:35 WARNING SWITCH-CENTRO-01 potencia optica degradada: -25.1 dBm
+2026-03-02 20:13:56 WARNING ONU-SUL-4512 temperatura acima do limite: 61 C
+2026-03-02 20:21:25 WARNING OLT-NORTE-02 utilizacao da interface em 98%
+2026-03-02 20:26:39 WARNING RADIO-OESTE-01 temperatura acima do limite: 65 C
+2026-03-02 20:32:47 INFO OLT-CENTRO-01 porta GPON0/1/1 ativada
+2026-03-02 20:44:03 WARNING OLT-NORTE-02 potencia optica degradada: -28.6 dBm
+2026-03-02 20:53:30 CRITICAL OLT-CENTRO-01 equipamento sem resposta ha 33 minutos
+2026-03-02 21:07:43 WARNING SWITCH-CENTRO-01 potencia optica degradada: -26.2 dBm
+2026-03-02 21:16:57 INFO SWITCH-NORTE-02 porta GPON0/1/1 ativada
+2026-03-02 21:31:53 INFO RADIO-OESTE-01 configuracao salva
+2026-03-02 21:32:26 INFO ONU-LESTE-77 configuracao salva
+2026-03-02 21:40:14 WARNING ONU-SUL-4512 utilizacao da interface em 97%
+2026-03-02 21:48:02 CRITICAL ONU-LESTE-77 equipamento sem resposta ha 7 minutos
+2026-03-02 21:50:30 WARNING RADIO-OESTE-01 potencia optica degradada: -28.2 dBm
+2026-03-02 21:55:10 WARNING RADIO-OESTE-01 potencia optica degradada: -26.5 dBm
+2026-03-02 21:57:22 INFO OLT-CENTRO-01 configuracao salva
+2026-03-02 22:05:21 WARNING ONU-LESTE-77 potencia optica degradada: -28.6 dBm
+2026-03-02 22:07:03 WARNING RADIO-OESTE-01 temperatura acima do limite: 61 C
+2026-03-02 22:16:16 INFO OLT-SUL-03 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 22:31:07 WARNING ONU-SUL-4512 temperatura acima do limite: 73 C
+2026-03-02 22:41:52 INFO ONU-SUL-4512 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 22:51:59 INFO ONU-SUL-4512 alarme CRITICAL encerrado na porta GPON0/1/7
+2026-03-02 22:53:38 INFO SWITCH-NORTE-02 porta GPON0/1/1 ativada
+2026-03-02 22:59:37 WARNING ONU-LESTE-77 temperatura acima do limite: 69 C
+2026-03-02 23:06:33 CRITICAL OLT-SUL-03 perda de sinal na porta GPON0/1/7
+2026-03-02 23:12:02 INFO SWITCH-NORTE-02 porta GPON0/1/8 ativada
+2026-03-02 23:18:31 INFO OLT-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/1
+2026-03-02 23:19:32 CRITICAL OLT-SUL-03 equipamento sem resposta ha 17 minutos
+2026-03-02 23:31:41 CRITICAL OLT-CENTRO-01 equipamento sem resposta ha 5 minutos
+2026-03-02 23:33:03 INFO ONU-SUL-4512 configuracao salva
+2026-03-02 23:45:41 WARNING OLT-CENTRO-01 temperatura acima do limite: 67 C
+2026-03-02 23:53:09 CRITICAL RADIO-OESTE-01 perda de sinal na porta GPON0/1/1
+2026-03-03 00:01:31 CRITICAL SWITCH-NORTE-02 equipamento sem resposta ha 7 minutos
+2026-03-03 00:15:25 WARNING SWITCH-NORTE-02 utilizacao da interface em 90%
+2026-03-03 00:29:39 WARNING OLT-CENTRO-01 potencia optica degradada: -27.5 dBm
+2026-03-03 00:33:59 CRITICAL ONU-SUL-4512 perda de sinal na porta GPON0/1/6
+2026-03-03 00:34:56 WARNING ONU-SUL-4512 utilizacao da interface em 95%
+2026-03-03 00:40:05 WARNING OLT-CENTRO-01 utilizacao da interface em 97%
+2026-03-03 00:50:11 INFO RADIO-OESTE-01 alarme CRITICAL encerrado na porta GPON0/1/4
+2026-03-03 01:02:03 WARNING OLT-CENTRO-01 temperatura acima do limite: 62 C
+2026-03-03 01:09:37 WARNING ONU-SUL-4512 potencia optica degradada: -25.2 dBm
+2026-03-03 01:14:41 INFO SWITCH-CENTRO-01 alarme CRITICAL encerrado na porta GPON0/1/3
