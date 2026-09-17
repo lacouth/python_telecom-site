@@ -785,10 +785,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-padrao-da-contagem" class="md-nav__link">
+  <a href="#contar-quantas-vezes-cada-chave-aparece" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O padrão da contagem
+        Contar quantas vezes cada chave aparece
       
     </span>
   </a>
@@ -796,10 +796,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-padrao-do-agrupamento" class="md-nav__link">
+  <a href="#agrupar-quando-o-valor-e-uma-lista" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O padrão do agrupamento
+        Agrupar: quando o valor é uma lista
       
     </span>
   </a>
@@ -814,6 +814,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Ordenar um dicionário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desempate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desempate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2246,10 +2263,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-padrao-da-contagem" class="md-nav__link">
+  <a href="#contar-quantas-vezes-cada-chave-aparece" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O padrão da contagem
+        Contar quantas vezes cada chave aparece
       
     </span>
   </a>
@@ -2257,10 +2274,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-padrao-do-agrupamento" class="md-nav__link">
+  <a href="#agrupar-quando-o-valor-e-uma-lista" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O padrão do agrupamento
+        Agrupar: quando o valor é uma lista
       
     </span>
   </a>
@@ -2275,6 +2292,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Ordenar um dicionário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desempate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desempate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2502,117 +2536,219 @@ frente do cliente do que esconde um problema real.</p>
 <p>A ordem do percurso é a ordem de <strong>inserção</strong> — a primeira chave criada é a
 primeira a sair. Não confie nisso para ordenar nada: para ordem própria, use
 <code>sorted</code>, como na última seção deste capítulo.</p>
-<h2 id="o-padrao-da-contagem">O padrão da contagem<a class="headerlink" href="#o-padrao-da-contagem" title="Permanent link">&para;</a></h2>
-<p>Este é o trecho mais importante da unidade. Guarde-o:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">contagem</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">contagem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<h2 id="contar-quantas-vezes-cada-chave-aparece">Contar quantas vezes cada chave aparece<a class="headerlink" href="#contar-quantas-vezes-cada-chave-aparece" title="Permanent link">&para;</a></h2>
+<p>Esta é a operação mais útil de todo o capítulo, e ela começa com um problema
+pequeno: na <strong>primeira</strong> vez que um equipamento aparece, não há o que somar — a
+chave ainda não existe. Nas vezes seguintes, há.</p>
+<p>O jeito direto é tratar os dois casos com um <code>if</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Contar sem nenhum atalho: a primeira vez que a chave aparece e diferente das</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># demais, entao o if trata os dois casos.</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">]</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">contagem</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="n">nome</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="k">if</span> <span class="n">nome</span> <span class="ow">in</span> <span class="n">contagem</span><span class="p">:</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>        <span class="n">contagem</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="n">contagem</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        <span class="n">contagem</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">contagem</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="s2">"2026-03-02 09:41:12 CRITICAL ONU-SUL-4512 sem resposta"</span><span class="p">,</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="s2">"2026-03-02 11:15:00 WARNING OLT-CENTRO-01 sinal degradado"</span><span class="p">,</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">]</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># O padrao de contagem: get(chave, 0) + 1</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">por_equipamento</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="n">equipamento</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="n">por_equipamento</span><span class="p">[</span><span class="n">equipamento</span><span class="p">]</span> <span class="o">=</span> <span class="n">por_equipamento</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">equipamento</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_equipamento</span><span class="p">)</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="n">por_severidade</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>    <span class="n">severidade</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
-<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span class="n">por_severidade</span><span class="p">[</span><span class="n">severidade</span><span class="p">]</span> <span class="o">=</span> <span class="n">por_severidade</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">severidade</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
-<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_severidade</span><span class="p">)</span>
-<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_severidade</span><span class="p">[</span><span class="s2">"CRITICAL"</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>{'OLT-CENTRO-01': 2, 'SWITCH-NORTE-02': 1}
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>{'OLT-CENTRO-01': 3, 'SWITCH-NORTE-02': 1, 'ONU-SUL-4512': 1}
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>{'CRITICAL': 3, 'INFO': 1, 'WARNING': 1}
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>3
+<p>Funciona, e é assim que se pensa o problema. Mas repare que os dois ramos do <code>if</code>
+fazem quase a mesma coisa: um soma 1 ao que havia, o outro soma 1 ao nada. Se
+existisse um jeito de dizer "o valor que está lá, <strong>ou zero se não houver nada</strong>",
+o <code>if</code> sumiria.</p>
+<p>Existe: é o <code>.get(chave, 0)</code> da seção anterior.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">contagem</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">contagem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div>
-<p>Leia a linha devagar: pegue o valor atual dessa chave (<strong>ou zero, se ela ainda não
-existe</strong>), some um, e guarde de volta. O <code>get</code> com padrão é o que permite que a
-primeira ocorrência e a décima sejam tratadas pela mesma linha — sem <code>if</code>, sem
-inicializar nada antes.</p>
-<p>Compare com o que isso custaria usando só listas: uma lista de nomes, outra de
-contagens, e um <code>if nome in nomes</code> a cada volta para descobrir em qual posição
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># A mesma contagem do exemplo anterior, com o get resolvendo o "primeira vez".</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="s2">"2026-03-02 11:15:00 WARNING OLT-CENTRO-01 sinal degradado"</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="s2">"2026-03-02 09:41:12 CRITICAL ONU-SUL-4512 sem resposta"</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">]</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="n">por_equipamento</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="n">nome</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>    <span class="n">por_equipamento</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="n">por_equipamento</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_equipamento</span><span class="p">)</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="n">por_severidade</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span class="n">severidade</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>    <span class="n">por_severidade</span><span class="p">[</span><span class="n">severidade</span><span class="p">]</span> <span class="o">=</span> <span class="n">por_severidade</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">severidade</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_severidade</span><span class="p">)</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_severidade</span><span class="p">[</span><span class="s2">"CRITICAL"</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>{'OLT-CENTRO-01': 3, 'SWITCH-NORTE-02': 1, 'ONU-SUL-4512': 1}
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>{'CRITICAL': 3, 'INFO': 1, 'WARNING': 1}
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>3
+</code></pre></div>
+<p>Leia a linha devagar: <em>pegue o valor atual dessa chave — ou zero, se ela ainda não
+existe —, some um, e guarde de volta</em>. As duas versões produzem exatamente o mesmo
+resultado; a segunda só escreve em uma linha o que a primeira escreve em quatro.</p>
+<p><strong>Escreva a versão longa sempre que estiver em dúvida.</strong> Ela é igualmente correta,
+e é dela que a curta sai.</p>
+<p>Compare agora com o que isso custaria usando só listas: uma lista de nomes, outra
+de contagens, e um <code>if nome in nomes</code> a cada volta para descobrir em qual posição
 somar. O dicionário elimina a busca.</p>
-<h2 id="o-padrao-do-agrupamento">O padrão do agrupamento<a class="headerlink" href="#o-padrao-do-agrupamento" title="Permanent link">&para;</a></h2>
-<p>Contar responde <em>quantos</em>. Agrupar responde <em>quais</em>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">grupos</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<h2 id="agrupar-quando-o-valor-e-uma-lista">Agrupar: quando o valor é uma lista<a class="headerlink" href="#agrupar-quando-o-valor-e-uma-lista" title="Permanent link">&para;</a></h2>
+<p>Contar responde <em>quantos</em>. Agrupar responde <em>quais</em> — e para isso o valor de cada
+chave deixa de ser um número e passa a ser uma <strong>lista</strong>.</p>
+<p>O raciocínio é o mesmo da contagem, com a mesma primeira vez a tratar: se a chave
+ainda não existe, comece com uma lista vazia; depois, acrescente.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Contar responde "quantos". Agrupar responde "quais" -- e o valor de cada</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># chave passa a ser uma LISTA.</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">]</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">grupos</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="n">severidade</span> <span class="o">=</span> <span class="n">campos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="n">equipamento</span> <span class="o">=</span> <span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="k">if</span> <span class="n">severidade</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grupos</span><span class="p">:</span>      <span class="c1"># primeira vez: comeca com lista vazia</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>        <span class="n">grupos</span><span class="p">[</span><span class="n">severidade</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>    <span class="n">grupos</span><span class="p">[</span><span class="n">severidade</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">equipamento</span><span class="p">)</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">grupos</span><span class="p">)</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">grupos</span><span class="p">[</span><span class="s2">"CRITICAL"</span><span class="p">])</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grupos</span><span class="p">[</span><span class="s2">"CRITICAL"</span><span class="p">]))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">]</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Contar responde "quantos"; agrupar responde "quais".</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">por_equipamento</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="n">equipamento</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="n">por_equipamento</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">equipamento</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_equipamento</span><span class="p">)</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_equipamento</span><span class="p">[</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">])</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">por_equipamento</span><span class="p">[</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">]))</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="c1"># setdefault devolve a lista que ja esta la, ou poe uma vazia e devolve ela.</span>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="n">vazio</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="n">vazio</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="n">vazio</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">vazio</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>{'CRITICAL': ['OLT-CENTRO-01', 'OLT-CENTRO-01'], 'INFO': ['SWITCH-NORTE-02']}
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>['OLT-CENTRO-01', 'OLT-CENTRO-01']
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>2
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>{'OLT-CENTRO-01': ['CRITICAL', 'CRITICAL'], 'SWITCH-NORTE-02': ['INFO']}
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>['CRITICAL', 'CRITICAL']
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>2
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>{'X': [1, 2]}
+<p>As duas linhas que importam são estas:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">if</span> <span class="n">severidade</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grupos</span><span class="p">:</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">grupos</span><span class="p">[</span><span class="n">severidade</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">grupos</span><span class="p">[</span><span class="n">severidade</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">equipamento</span><span class="p">)</span>
 </code></pre></div>
-<p><code>setdefault(chave, [])</code> devolve a lista que já está naquela chave ou, se a chave
-não existe, coloca uma lista vazia lá e devolve <strong>essa</strong> lista. Como é a lista de
-verdade que volta (e não uma cópia), o <code>.append</code> logo em seguida a altera no lugar.</p>
+<p>O <code>append</code> funciona porque <code>grupos[severidade]</code> <strong>é</strong> a lista que está dentro do
+dicionário — não uma cópia dela. Alterá-la altera o dicionário.</p>
 <p>Os dois padrões juntos — contar e agrupar — resolvem a maior parte do que se pede
 num relatório de operação.</p>
 <h2 id="ordenar-um-dicionario">Ordenar um dicionário<a class="headerlink" href="#ordenar-um-dicionario" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">por_equipamento</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="s2">"OLT-CENTRO-01"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="s2">"ONU-SUL-4512"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="s2">"SWITCH-NORTE-02"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">}</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># .items() da pares; sorted ordena por eles.</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="c1"># key= diz POR QUE CAMPO ordenar: [1] e o valor do par.</span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">pelo_valor</span><span class="p">(</span><span class="n">par</span><span class="p">):</span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>    <span class="k">return</span> <span class="n">par</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">pelo_valor</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="c1"># O top-N: os dois equipamentos com mais alarmes.</span>
-<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="n">ranking</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">pelo_valor</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">quantos</span> <span class="ow">in</span> <span class="n">ranking</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
-<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nome</span><span class="si">:</span><span class="s2">&lt;18</span><span class="si">}{</span><span class="n">quantos</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>
-<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="c1"># O maior de todos, sem ordenar a lista inteira.</span>
-<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">por_equipamento</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">get</span><span class="p">))</span>
+<p>Um ranking ("os equipamentos com mais alarmes") é um problema de ordenação, e ele
+vem em dois degraus.</p>
+<p>O primeiro é saber o que ordenar. <code>.items()</code> entrega os pares:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">por_equipamento</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="s2">"OLT-CENTRO-01"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="s2">"ONU-SUL-4512"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="s2">"SWITCH-NORTE-02"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">}</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># .items() da os pares (chave, valor).</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># sorted sobre esses pares ordena pela CHAVE -- ordem alfabetica de nome.</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>[('OLT-CENTRO-01', 3), ('ONU-SUL-4512', 1), ('SWITCH-NORTE-02', 5)]
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>[('SWITCH-NORTE-02', 5), ('OLT-CENTRO-01', 3), ('ONU-SUL-4512', 1)]
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>SWITCH-NORTE-02     5
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>OLT-CENTRO-01       3
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>SWITCH-NORTE-02
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>[('OLT-CENTRO-01', 3), ('ONU-SUL-4512', 1), ('SWITCH-NORTE-02', 5)]
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>[('OLT-CENTRO-01', 3), ('ONU-SUL-4512', 1), ('SWITCH-NORTE-02', 5)]
 </code></pre></div>
-<p><code>.items()</code> entrega pares <code>(chave, valor)</code>, e <code>sorted</code> os ordena pela chave. Para
-ordenar <strong>pelo valor</strong> — que é o que um ranking pede — passe <code>key=</code>: uma função que
-recebe um item e devolve o que deve ser comparado. Aqui, <code>par[1]</code> é o valor.</p>
-<p>Com <code>reverse=True</code> e um fatiamento sai o <strong>top-N</strong>: "os dois equipamentos com mais
-alarmes". E <code>max(dicionario, key=dicionario.get)</code> dá direto a chave do maior valor,
-sem ordenar a lista inteira.</p>
+<p><code>sorted</code> ordena esses pares pelo <strong>primeiro</strong> elemento de cada um — a chave. Por
+isso a saída sai em ordem alfabética de nome, que não é o que um ranking quer.</p>
+<p>O segundo degrau é dizer ao <code>sorted</code> <strong>por qual campo</strong> ordenar. Isso se faz com o
+parâmetro <code>key=</code>, que recebe uma função:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">por_equipamento</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="s2">"OLT-CENTRO-01"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="s2">"ONU-SUL-4512"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="s2">"SWITCH-NORTE-02"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">}</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="c1"># Uma funcao comum: recebe um par e devolve o que deve ser comparado.</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">quantidade_do_par</span><span class="p">(</span><span class="n">par</span><span class="p">):</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">    </span><span class="sd">"""Devolve a quantidade de um par (nome, quantidade)."""</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>    <span class="k">return</span> <span class="n">par</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="c1"># Ela funciona sozinha, como qualquer funcao:</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">quantidade_do_par</span><span class="p">((</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="c1"># Passando o NOME dela para o sorted (sem parenteses!), o sorted a chama para</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="c1"># cada par e compara o que ela devolver.</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">quantidade_do_par</span><span class="p">))</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">quantidade_do_par</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="c1"># O top-N: os dois com mais alarmes.</span>
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="n">ranking</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">por_equipamento</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">quantidade_do_par</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">quantos</span> <span class="ow">in</span> <span class="n">ranking</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nome</span><span class="si">:</span><span class="s2">&lt;18</span><span class="si">}{</span><span class="n">quantos</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>3
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>[('ONU-SUL-4512', 1), ('OLT-CENTRO-01', 3), ('SWITCH-NORTE-02', 5)]
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>[('SWITCH-NORTE-02', 5), ('OLT-CENTRO-01', 3), ('ONU-SUL-4512', 1)]
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>SWITCH-NORTE-02     5
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>OLT-CENTRO-01       3
+</code></pre></div>
+<p>Leia com calma, porque aqui há uma ideia nova: <strong>uma função sendo passada como
+argumento para outra</strong>.</p>
+<ul>
+<li><code>quantidade_do_par</code> é uma função comum. A primeira linha da saída mostra ela
+  sendo chamada sozinha, como qualquer outra;</li>
+<li>em <code>key=quantidade_do_par</code> o nome vai <strong>sem parênteses</strong>. Com parênteses você
+  estaria chamando a função ali mesmo e passando o resultado; sem eles, você passa
+  a função em si, e quem a chama é o <code>sorted</code> — uma vez para cada par;</li>
+<li>para cada par, o <code>sorted</code> compara o que a função devolveu, e não o par inteiro.</li>
+</ul>
+<p>Com <code>reverse=True</code> a ordem se inverte, e um fatiamento dá o <strong>top-N</strong>: "os dois
+equipamentos com mais alarmes".</p>
+<h3 id="desempate">Desempate<a class="headerlink" href="#desempate" title="Permanent link">&para;</a></h3>
+<p>Quando duas chaves têm a mesma quantidade, quem vem primeiro? Sem dizer nada, a
+resposta é imprevisível para quem lê o relatório:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Quando duas chaves tem a mesma quantidade, quem vem primeiro?</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">contagem</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"SWITCH-C"</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">quantidade_do_par</span><span class="p">(</span><span class="n">par</span><span class="p">):</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="sd">"""Devolve a quantidade de um par (nome, quantidade)."""</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="k">return</span> <span class="n">par</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># Com reverse=True, o empate sai em ordem imprevisivel para quem le.</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">contagem</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">quantidade_do_par</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="c1"># Para desempatar pelo nome, a funcao devolve uma TUPLA com os dois criterios.</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="c1"># O sinal de menos inverte so a quantidade, deixando o nome em ordem normal --</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="c1"># e por isso nao se usa reverse=True aqui.</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">por_quantidade_e_nome</span><span class="p">(</span><span class="n">par</span><span class="p">):</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">    </span><span class="sd">"""Ordena por quantidade decrescente e, no empate, por nome crescente."""</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>    <span class="n">nome</span><span class="p">,</span> <span class="n">quantidade</span> <span class="o">=</span> <span class="n">par</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>    <span class="k">return</span> <span class="o">-</span><span class="n">quantidade</span><span class="p">,</span> <span class="n">nome</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_quantidade_e_nome</span><span class="p">((</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">contagem</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">por_quantidade_e_nome</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>[('SWITCH-C', 7), ('ONU-B', 3), ('OLT-A', 3)]
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>(-3, 'OLT-A')
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>[('SWITCH-C', 7), ('OLT-A', 3), ('ONU-B', 3)]
+</code></pre></div>
+<p>A solução é a função de ordenação devolver <strong>dois critérios</strong>, numa tupla: o
+<code>sorted</code> compara o primeiro e, só em caso de empate, passa para o segundo.</p>
+<p>O detalhe do sinal de menos: como queremos quantidade <strong>decrescente</strong> e nome
+<strong>crescente</strong>, não dá para usar <code>reverse=True</code> — ele inverteria os dois. Inverter
+só a quantidade, trocando-a pelo seu negativo, resolve. A linha do meio da saída
+mostra o que a função devolve para um par: <code>(-3, 'OLT-A')</code>.</p>
 <h2 id="onde-isso-e-usado-de-verdade">Onde isso é usado de verdade<a class="headerlink" href="#onde-isso-e-usado-de-verdade" title="Permanent link">&para;</a></h2>
 <p>O dicionário é a forma em que o dado de rede chega quando ele já está estruturado.</p>
 <p>Duas ferramentas centrais no mercado deixam isso explícito. Os <em>parsers</em> do
@@ -2653,12 +2789,16 @@ um centro de operações olha de manhã.</p>
 <td>o dicionário foi criado <strong>dentro</strong> do laço</td>
 </tr>
 <tr>
+<td><code>TypeError: 'function' object is not subscriptable</code></td>
+<td>o <code>key=</code> recebeu a função <strong>com</strong> parênteses</td>
+</tr>
+<tr>
 <td><code>AttributeError: 'dict' object has no attribute 'append'</code></td>
 <td>dicionário não tem <code>append</code>; a atribuição na chave já cria</td>
 </tr>
 <tr>
-<td>o <code>setdefault</code> não acumulou</td>
-<td>você usou <code>dicionario[chave] = []</code> a cada volta, apagando o que havia</td>
+<td>a lista de um grupo tem sempre um item só</td>
+<td>o <code>dicionario[chave] = []</code> ficou fora do <code>if</code>, e apaga a lista a cada volta</td>
 </tr>
 </tbody>
 </table>
@@ -2669,9 +2809,11 @@ um centro de operações olha de manhã.</p>
 <li><code>in</code> testa <strong>chaves</strong>.</li>
 <li><code>[chave]</code> quebra quando não existe; <code>.get(chave, padrao)</code> não.</li>
 <li><code>.items()</code> é a forma de percurso que se usa na prática.</li>
-<li>Contar: <code>contagem[c] = contagem.get(c, 0) + 1</code>.</li>
-<li>Agrupar: <code>grupos.setdefault(c, []).append(item)</code>.</li>
-<li>Ranking: <code>sorted(d.items(), key=..., reverse=True)[:n]</code>.</li>
+<li>Contar: <code>contagem[c] = contagem.get(c, 0) + 1</code> — a forma curta do <code>if</code> que
+  trata a primeira ocorrência.</li>
+<li>Agrupar: <code>if c not in grupos: grupos[c] = []</code> e depois <code>grupos[c].append(item)</code>.</li>
+<li>Ranking: <code>sorted(d.items(), key=funcao, reverse=True)[:n]</code>, com a função
+  passada <strong>sem parênteses</strong>.</li>
 </ul>
 <h2 id="para-praticar">Para praticar<a class="headerlink" href="#para-praticar" title="Permanent link">&para;</a></h2>
 <p><a href="../../listas/lista05/">Lista 05 · Dicionários</a> — cadastro de equipamento, contagem

@@ -2346,11 +2346,18 @@
 <p>Esta lista percorre o dicionário na ordem em que ele é usado no trabalho: primeiro
 como <strong>cadastro</strong> (um equipamento, seus campos), depois como <strong>contador</strong> (quantos
 alarmes por elemento de rede) e por fim como <strong>agrupador</strong> e <strong>ranking</strong>.</p>
-<p>Os dois trechos que valem decorar aparecem a partir do exercício 05:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">contagem</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">contagem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>     <span class="c1"># contar</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">grupos</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>        <span class="c1"># agrupar</span>
+<p>Os dois padrões que valem guardar aparecem a partir do exercício 05:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># contar</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">contagem</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">contagem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># agrupar</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">if</span> <span class="n">chave</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grupos</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">grupos</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">grupos</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </code></pre></div>
-<p>As linhas de log são as mesmas da Lista 02 — o que muda é o que você faz com elas
+<p>Os dois resolvem a mesma dificuldade — a <strong>primeira vez</strong> que uma chave aparece —,
+um começando do zero e o outro de uma lista vazia.</p>
+<p>As linhas de log são as mesmas da Lista 02: o que muda é o que você faz com elas
 depois de separar os campos.</p>
 <p><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/lista05.ipynb"><img alt="Abrir no Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p><a class="md-button" href="../../notebooks/lista05.ipynb"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar o caderno</a></p>
@@ -2514,69 +2521,83 @@ vezes).</p>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">])</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1"># -&gt; {"CRITICAL": ["OLT-CENTRO-01", "OLT-CENTRO-01"], "INFO": ["SWITCH-NORTE-02"]}</span>
 </code></pre></div>
-<p>Dica: <code>grupos.setdefault(chave, []).append(item)</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">equipamentos_por_severidade</span><span class="p">(</span><span class="n">linhas</span><span class="p">):</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="sd">"""Devolve {severidade: [equipamentos que tiveram alarme dessa severidade]}."""</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="c1"># TODO: agrupe com setdefault</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="k">pass</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># --- testes (não altere) ---</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="p">]</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="k">assert</span> <span class="n">equipamentos_por_severidade</span><span class="p">(</span><span class="n">linhas</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="s2">"CRITICAL"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="s2">"OLT-CENTRO-01"</span><span class="p">],</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="s2">"INFO"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"SWITCH-NORTE-02"</span><span class="p">],</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="p">}</span>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="k">assert</span> <span class="n">equipamentos_por_severidade</span><span class="p">([])</span> <span class="o">==</span> <span class="p">{}</span>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 07: todos os testes passaram!"</span><span class="p">)</span>
+<p>O raciocínio é o mesmo da contagem: a <strong>primeira vez</strong> que uma severidade aparece
+é diferente das demais. Só que agora, em vez de começar em <code>0</code>, ela começa com uma
+lista vazia:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">if</span> <span class="n">chave</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grupos</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">grupos</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">grupos</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">equipamentos_por_severidade</span><span class="p">(</span><span class="n">linhas</span><span class="p">):</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="sd">"""Devolve {severidade: [equipamentos que tiveram alarme dessa severidade]}."""</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="c1"># TODO: se a severidade ainda não é chave, comece com uma lista vazia;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="c1"># depois acrescente o equipamento a essa lista</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="k">pass</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># --- testes (não altere) ---</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="p">]</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="k">assert</span> <span class="n">equipamentos_por_severidade</span><span class="p">(</span><span class="n">linhas</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="s2">"CRITICAL"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="s2">"OLT-CENTRO-01"</span><span class="p">],</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    <span class="s2">"INFO"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"SWITCH-NORTE-02"</span><span class="p">],</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="p">}</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="k">assert</span> <span class="n">equipamentos_por_severidade</span><span class="p">([])</span> <span class="o">==</span> <span class="p">{}</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 07: todos os testes passaram!"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="exercicio-08">Exercício 08<a class="headerlink" href="#exercicio-08" title="Permanent link">&para;</a></h2>
 <p>Escreva <code>mais_alarmes(contagem)</code>, que recebe um dicionário <code>{equipamento:
 quantidade}</code> e devolve o <strong>nome</strong> do equipamento com mais alarmes. Dicionário
 vazio devolve <code>None</code>.</p>
 <p>Havendo empate, devolva o que aparece primeiro no dicionário.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>  <span class="c1"># -&gt; "ONU-B"</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">mais_alarmes</span><span class="p">({})</span>                                    <span class="c1"># -&gt; None</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>  <span class="c1"># -&gt; "ONU-B"</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">mais_alarmes</span><span class="p">({})</span>                                    <span class="c1"># -&gt; None</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">mais_alarmes</span><span class="p">(</span><span class="n">contagem</span><span class="p">):</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="sd">"""Nome do equipamento com mais alarmes, ou None se não houver nenhum."""</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="c1"># TODO: é o padrão do extremo, agora percorrendo .items()</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="k">pass</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># --- testes (não altere) ---</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="o">==</span> <span class="s2">"ONU-B"</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({})</span> <span class="ow">is</span> <span class="kc">None</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"X"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="o">==</span> <span class="s2">"X"</span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span> <span class="o">==</span> <span class="s2">"A"</span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 08: todos os testes passaram!"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">mais_alarmes</span><span class="p">(</span><span class="n">contagem</span><span class="p">):</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="sd">"""Nome do equipamento com mais alarmes, ou None se não houver nenhum."""</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="c1"># TODO: é o padrão do extremo, agora percorrendo .items()</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="k">pass</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># --- testes (não altere) ---</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="o">==</span> <span class="s2">"ONU-B"</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({})</span> <span class="ow">is</span> <span class="kc">None</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"X"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="o">==</span> <span class="s2">"X"</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="k">assert</span> <span class="n">mais_alarmes</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span> <span class="o">==</span> <span class="s2">"A"</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 08: todos os testes passaram!"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="exercicio-09">Exercício 09<a class="headerlink" href="#exercicio-09" title="Permanent link">&para;</a></h2>
 <p>Escreva <code>ranking(contagem, n)</code>, que devolve a lista dos <code>n</code> equipamentos com mais
 alarmes, <strong>do maior para o menor</strong>, como lista de tuplas <code>(nome, quantidade)</code>.</p>
 <p>Em caso de empate, o nome em ordem alfabética vem primeiro.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">ranking</span><span class="p">({</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># -&gt; [("ONU-B", 7), ("OLT-A", 3)]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">ranking</span><span class="p">({</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># -&gt; [("ONU-B", 7), ("OLT-A", 3)]</span>
 </code></pre></div>
 <p>Dica: <code>sorted(contagem.items(), key=...)</code> — e a função de ordenação pode devolver
 uma tupla, que é comparada campo a campo.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="sd">"""Os n equipamentos com mais alarmes, em ordem decrescente."""</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="c1"># TODO: ordene os pares pelo valor (decrescente) e pelo nome (crescente)</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="k">pass</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># --- testes (não altere) ---</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">contagem</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"ONU-B"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"ONU-B"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-C"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"ONU-B"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-C"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">({},</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 09: todos os testes passaram!"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">por_quantidade_e_nome</span><span class="p">(</span><span class="n">par</span><span class="p">):</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="sd">"""Chave de ordenação: quantidade decrescente, nome crescente. JÁ ESCRITA."""</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">nome</span><span class="p">,</span> <span class="n">quantidade</span> <span class="o">=</span> <span class="n">par</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="k">return</span> <span class="o">-</span><span class="n">quantidade</span><span class="p">,</span> <span class="n">nome</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="sd">"""Os n equipamentos com mais alarmes, em ordem decrescente."""</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    <span class="c1"># TODO: sorted(contagem.items(), key=por_quantidade_e_nome) devolve os pares</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    <span class="c1"># na ordem certa; falta pegar só os n primeiros</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="k">pass</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="c1"># --- testes (não altere) ---</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="n">contagem</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"OLT-A"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"ONU-B"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"ONU-B"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-C"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">(</span><span class="n">contagem</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s2">"ONU-B"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">"OLT-C"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="k">assert</span> <span class="n">ranking</span><span class="p">({},</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 09: todos os testes passaram!"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="exercicio-10">Exercício 10<a class="headerlink" href="#exercicio-10" title="Permanent link">&para;</a></h2>
 <p>Feche a lista montando o relatório. Escreva <code>relatorio_alarmes(linhas)</code>, que
@@ -2585,33 +2606,51 @@ ordem decrescente de quantidade (empate resolvido pelo nome), mais uma linha fin
 com o total.</p>
 <p>Formato de cada linha: nome em 16 colunas à esquerda e a quantidade em 3 colunas à
 direita.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>OLT-CENTRO-01     2
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>ONU-SUL-4512      1
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>3 alarmes criticos em 2 equipamentos
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>OLT-CENTRO-01     2
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ONU-SUL-4512      1
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>3 alarmes criticos em 2 equipamentos
 </code></pre></div>
 <p>Sem nenhum alarme crítico, devolva <code>"nenhum alarme critico"</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">relatorio_alarmes</span><span class="p">(</span><span class="n">linhas</span><span class="p">):</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="sd">"""Relatório de alarmes CRITICAL por equipamento, com o total ao final."""</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="c1"># TODO: conte, ordene e formate — aproveite as funções dos exercícios anteriores</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="k">pass</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="c1"># --- testes (não altere) ---</span>
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
-<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>    <span class="s2">"2026-03-02 11:00:00 CRITICAL ONU-SUL-4512 sem resposta"</span><span class="p">,</span>
-<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="p">]</span>
-<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="n">esperado</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>    <span class="s2">"OLT-CENTRO-01     2</span><span class="se">\n</span><span class="s2">"</span>
-<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>    <span class="s2">"ONU-SUL-4512      1</span><span class="se">\n</span><span class="s2">"</span>
-<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>    <span class="s2">"3 alarmes criticos em 2 equipamentos"</span>
-<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="p">)</span>
-<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="k">assert</span> <span class="n">relatorio_alarmes</span><span class="p">(</span><span class="n">linhas</span><span class="p">)</span> <span class="o">==</span> <span class="n">esperado</span>
-<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="k">assert</span> <span class="n">relatorio_alarmes</span><span class="p">([</span><span class="n">linhas</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="o">==</span> <span class="s2">"nenhum alarme critico"</span>
-<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="k">assert</span> <span class="n">relatorio_alarmes</span><span class="p">([])</span> <span class="o">==</span> <span class="s2">"nenhum alarme critico"</span>
-<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 10: todos os testes passaram!"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">conta_criticos</span><span class="p">(</span><span class="n">linhas</span><span class="p">):</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="sd">"""Devolve {equipamento: quantidade de alarmes CRITICAL}. JÁ ESCRITA."""</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="n">contagem</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>        <span class="k">if</span> <span class="n">campos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"CRITICAL"</span><span class="p">:</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>            <span class="n">contagem</span><span class="p">[</span><span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">contagem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    <span class="k">return</span> <span class="n">contagem</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">por_quantidade_e_nome</span><span class="p">(</span><span class="n">par</span><span class="p">):</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">    </span><span class="sd">"""Chave de ordenação: quantidade decrescente, nome crescente. JÁ ESCRITA."""</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>    <span class="n">nome</span><span class="p">,</span> <span class="n">quantidade</span> <span class="o">=</span> <span class="n">par</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>    <span class="k">return</span> <span class="o">-</span><span class="n">quantidade</span><span class="p">,</span> <span class="n">nome</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">relatorio_alarmes</span><span class="p">(</span><span class="n">linhas</span><span class="p">):</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">    </span><span class="sd">"""Relatório de alarmes CRITICAL por equipamento, com o total ao final."""</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>    <span class="c1"># TODO: use as duas funções acima. Para cada par, monte a linha formatada</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>    <span class="c1"># com f"{nome:&lt;16}{quantos:&gt;3}"; no fim, acrescente a linha do total e junte</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>    <span class="c1"># tudo com "\n".join(...)</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    <span class="k">pass</span>
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="c1"># --- testes (não altere) ---</span>
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal"</span><span class="p">,</span>
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>    <span class="s2">"2026-03-02 09:00:00 INFO SWITCH-NORTE-02 porta ativada"</span><span class="p">,</span>
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>    <span class="s2">"2026-03-02 10:02:55 CRITICAL OLT-CENTRO-01 temperatura alta"</span><span class="p">,</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>    <span class="s2">"2026-03-02 11:00:00 CRITICAL ONU-SUL-4512 sem resposta"</span><span class="p">,</span>
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a><span class="p">]</span>
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a><span class="n">esperado</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>    <span class="s2">"OLT-CENTRO-01     2</span><span class="se">\n</span><span class="s2">"</span>
+<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>    <span class="s2">"ONU-SUL-4512      1</span><span class="se">\n</span><span class="s2">"</span>
+<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>    <span class="s2">"3 alarmes criticos em 2 equipamentos"</span>
+<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a><span class="p">)</span>
+<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a><span class="k">assert</span> <span class="n">relatorio_alarmes</span><span class="p">(</span><span class="n">linhas</span><span class="p">)</span> <span class="o">==</span> <span class="n">esperado</span>
+<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a><span class="k">assert</span> <span class="n">relatorio_alarmes</span><span class="p">([</span><span class="n">linhas</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="o">==</span> <span class="s2">"nenhum alarme critico"</span>
+<a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a><span class="k">assert</span> <span class="n">relatorio_alarmes</span><span class="p">([])</span> <span class="o">==</span> <span class="s2">"nenhum alarme critico"</span>
+<a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 10: todos os testes passaram!"</span><span class="p">)</span>
 </code></pre></div>
 
 

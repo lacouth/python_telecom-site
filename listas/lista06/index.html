@@ -2347,9 +2347,9 @@
 rede, o que sumiu, o que continua. É a operação que abre o dia num centro de
 operações, e com conjuntos ela cabe em uma linha.</p>
 <p>Do exercício 06 em diante, o dado passa a ser o <strong>inventário</strong> — uma lista de
-dicionários, que é o formato em que ele chega de qualquer sistema de gerência. É
-também a hora de trocar alguns laços por compreensões, onde elas deixam o código
-mais claro (e só onde deixam).</p>
+dicionários, que é o formato em que ele chega de qualquer sistema de gerência. Os
+laços são os mesmos cinco da Lista 03: o que muda é que cada item agora é um
+dicionário, e o <code>if</code> olha um campo dele.</p>
 <p><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/lista06.ipynb"><img alt="Abrir no Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p><a class="md-button" href="../../notebooks/lista06.ipynb"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Baixar o caderno</a></p>
 <div class="admonition tip">
@@ -2482,10 +2482,12 @@ dicionários:</p>
 equipamentos com <code>"em_servico"</code> verdadeiro, <strong>na ordem do inventário</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">nomes_em_servico</span><span class="p">(</span><span class="n">inventario</span><span class="p">)</span>  <span class="c1"># -&gt; ["OLT-CENTRO-01", "ONU-SUL-4512"]</span>
 </code></pre></div>
-<p>Tente escrever com uma compreensão de lista.</p>
+<p>É o padrão do filtro da Lista 03, com dicionários no lugar de números: o <code>if</code>
+agora olha um campo (<code>equipamento["em_servico"]</code>), e o que entra na lista nova é
+outro campo (<code>equipamento["nome"]</code>).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">nomes_em_servico</span><span class="p">(</span><span class="n">inventario</span><span class="p">):</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="sd">"""Nomes dos equipamentos em serviço, na ordem do inventário."""</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="c1"># TODO: [... for equipamento in inventario if ...]</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="c1"># TODO: lista nova, laço sobre o inventário, if e append</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="k">pass</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
@@ -2501,15 +2503,16 @@ equipamentos com <code>"em_servico"</code> verdadeiro, <strong>na ordem do inven
 <a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 06: todos os testes passaram!"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="exercicio-07">Exercício 07<a class="headerlink" href="#exercicio-07" title="Permanent link">&para;</a></h2>
-<p>Escreva <code>portas_por_nome(inventario)</code>, que devolve o dicionário
-<code>{nome: portas}</code> a partir do inventário.</p>
+<p>Escreva <code>portas_por_nome(inventario)</code>, que devolve o dicionário <code>{nome: portas}</code> a
+partir do inventário.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">portas_por_nome</span><span class="p">(</span><span class="n">inventario</span><span class="p">)</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># -&gt; {"OLT-CENTRO-01": 16, "ONU-SUL-4512": 1, "OLT-NORTE-02": 8}</span>
 </code></pre></div>
-<p>Tente com uma <strong>compreensão de dicionário</strong>: <code>{chave: valor for ... in ...}</code>.</p>
+<p>É a mesma ideia do dicionário indexado por nome do capítulo 6: percorrer a lista
+uma vez e montar um dicionário que responde direto, sem procurar.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">portas_por_nome</span><span class="p">(</span><span class="n">inventario</span><span class="p">):</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="sd">"""Devolve {nome: portas} a partir do inventário."""</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="c1"># TODO: compreensão de dicionário</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="c1"># TODO: dicionário vazio, laço, e uma atribuição por equipamento</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="k">pass</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
@@ -2531,7 +2534,7 @@ distintos de equipamento no inventário.</p>
 <code>"DESCONHECIDO"</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">tipos_presentes</span><span class="p">(</span><span class="n">inventario</span><span class="p">):</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="sd">"""Lista ordenada dos tipos distintos presentes no inventário."""</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="c1"># TODO: use .get com padrão, acumule num conjunto e ordene</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="c1"># TODO: conjunto vazio com set(), laço com .add(), e sorted() no fim</span>
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="k">pass</span>
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
@@ -2591,27 +2594,40 @@ equipamento sem avisar.</p>
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">hoje</span><span class="p">)</span>
 <a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># -&gt; {"apareceram": ["RADIO-C"], "sumiram": ["OLT-B"], "mudaram_portas": ["OLT-A"]}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">hoje</span><span class="p">):</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="sd">"""Compara dois inventários: o que apareceu, o que sumiu e o que mudou."""</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="c1"># TODO: indexe os dois por nome, compare os conjuntos de chaves e depois</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="c1"># percorra a interseção comparando o número de portas</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="k">pass</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+<p>A função <code>indexa</code>, que transforma a lista em <code>{nome: equipamento}</code>, já vem escrita
+no esqueleto. Com os dois inventários indexados, <code>set(antes)</code> e <code>set(agora)</code> são os
+conjuntos de nomes — e aí os exercícios 02, 03 e 04 desta lista respondem duas das
+três perguntas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">indexa</span><span class="p">(</span><span class="n">inventario</span><span class="p">):</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="sd">"""Converte a lista de dicionários em {nome: equipamento}. JÁ ESCRITA."""</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="n">por_nome</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="n">por_nome</span><span class="p">[</span><span class="n">equipamento</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">equipamento</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="k">return</span> <span class="n">por_nome</span>
 <a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="c1"># --- testes (não altere) ---</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="n">ontem</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-A"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span> <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-B"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">8</span><span class="p">}]</span>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="n">hoje</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-A"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">24</span><span class="p">},</span> <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"RADIO-C"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}]</span>
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="k">assert</span> <span class="n">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">hoje</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>    <span class="s2">"apareceram"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"RADIO-C"</span><span class="p">],</span>
-<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>    <span class="s2">"sumiram"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OLT-B"</span><span class="p">],</span>
-<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>    <span class="s2">"mudaram_portas"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OLT-A"</span><span class="p">],</span>
-<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="p">}</span>
-<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="k">assert</span> <span class="n">diferencas</span><span class="p">([],</span> <span class="p">[])</span> <span class="o">==</span> <span class="p">{</span><span class="s2">"apareceram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"sumiram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"mudaram_portas"</span><span class="p">:</span> <span class="p">[]}</span>
-<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="k">assert</span> <span class="n">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">ontem</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
-<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>    <span class="s2">"apareceram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"sumiram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"mudaram_portas"</span><span class="p">:</span> <span class="p">[]</span>
-<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="p">}</span>
-<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 10: todos os testes passaram!"</span><span class="p">)</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">hoje</span><span class="p">):</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">    </span><span class="sd">"""Compara dois inventários: o que apareceu, o que sumiu e o que mudou."""</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    <span class="c1"># TODO: use indexa() nos dois inventários. As chaves de cada dicionário são</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="c1"># os nomes — compare os dois conjuntos de chaves para achar o que apareceu e</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>    <span class="c1"># o que sumiu, e percorra a interseção comparando o número de portas.</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>    <span class="k">pass</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="c1"># --- testes (não altere) ---</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="n">ontem</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-A"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span> <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-B"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">8</span><span class="p">}]</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="n">hoje</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-A"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">24</span><span class="p">},</span> <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"RADIO-C"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}]</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="k">assert</span> <span class="n">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">hoje</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    <span class="s2">"apareceram"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"RADIO-C"</span><span class="p">],</span>
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>    <span class="s2">"sumiram"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OLT-B"</span><span class="p">],</span>
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>    <span class="s2">"mudaram_portas"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"OLT-A"</span><span class="p">],</span>
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="p">}</span>
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="k">assert</span> <span class="n">diferencas</span><span class="p">([],</span> <span class="p">[])</span> <span class="o">==</span> <span class="p">{</span><span class="s2">"apareceram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"sumiram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"mudaram_portas"</span><span class="p">:</span> <span class="p">[]}</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="k">assert</span> <span class="n">diferencas</span><span class="p">(</span><span class="n">ontem</span><span class="p">,</span> <span class="n">ontem</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>    <span class="s2">"apareceram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"sumiram"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"mudaram_portas"</span><span class="p">:</span> <span class="p">[]</span>
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="p">}</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Exercício 10: todos os testes passaram!"</span><span class="p">)</span>
 </code></pre></div>
 
 

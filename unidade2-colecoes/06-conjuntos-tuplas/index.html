@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#6-conjuntos-tuplas-aninhamento-e-compreensoes" class="md-skip">
+        <a href="#6-conjuntos-tuplas-e-inventario" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -824,10 +824,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compreensoes-o-laco-em-uma-linha" class="md-nav__link">
+  <a href="#consultar-pelo-nome-sem-percorrer-tudo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compreensões: o laço em uma linha
+        Consultar pelo nome, sem percorrer tudo
       
     </span>
   </a>
@@ -2246,10 +2246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compreensoes-o-laco-em-uma-linha" class="md-nav__link">
+  <a href="#consultar-pelo-nome-sem-percorrer-tudo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compreensões: o laço em uma linha
+        Consultar pelo nome, sem percorrer tudo
       
     </span>
   </a>
@@ -2320,8 +2320,8 @@
   
 
 
-<h1 id="6-conjuntos-tuplas-aninhamento-e-compreensoes">6. Conjuntos, tuplas, aninhamento e compreensões<a class="headerlink" href="#6-conjuntos-tuplas-aninhamento-e-compreensoes" title="Permanent link">&para;</a></h1>
-<p>Este capítulo fecha a caixa de ferramentas de coleções. São quatro assuntos que
+<h1 id="6-conjuntos-tuplas-e-inventario">6. Conjuntos, tuplas e inventário<a class="headerlink" href="#6-conjuntos-tuplas-e-inventario" title="Permanent link">&para;</a></h1>
+<p>Este capítulo fecha a caixa de ferramentas de coleções. São três assuntos que
 parecem soltos e não são: juntos, eles dão a forma de todo dado de inventário que
 você vai processar no resto do curso.</p>
 <h2 id="conjuntos-quando-so-importa-quem-esta-la">Conjuntos: quando só importa quem está lá<a class="headerlink" href="#conjuntos-quando-so-importa-quem-esta-la" title="Permanent link">&para;</a></h2>
@@ -2480,113 +2480,88 @@ lista não pode. É o que permite indexar por mais de um campo ao mesmo tempo, c
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">]</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inventario</span><span class="p">))</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">inventario</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"nome"</span><span class="p">])</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># Percorrer a lista da um dicionario por vez.</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="k">if</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"em_servico"</span><span class="p">]:</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">equipamento</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">],</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"portas"</span><span class="p">])</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="c1"># Total de portas em servico: acumulador da Unidade 1, dado da Unidade 2.</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>    <span class="k">if</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"em_servico"</span><span class="p">]:</span>
-<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"portas"</span><span class="p">]</span>
-<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># Chegando ao nome do primeiro equipamento, um passo por vez:</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">primeiro</span> <span class="o">=</span> <span class="n">inventario</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>      <span class="c1"># um dicionario</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">primeiro</span><span class="p">)</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">primeiro</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">])</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="c1"># As duas linhas acima, encurtadas numa so -- e a mesma coisa:</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">inventario</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"nome"</span><span class="p">])</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="c1"># Percorrer a lista da um dicionario por vez.</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span class="k">if</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"em_servico"</span><span class="p">]:</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">equipamento</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">],</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"portas"</span><span class="p">])</span>
 <a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
-<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="c1"># Dicionario de dicionarios: acesso por nome, em vez de percorrer a lista.</span>
-<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="n">por_nome</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="c1"># Total de portas em servico: acumulador da Unidade 1, dado da Unidade 2.</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 <a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
-<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>    <span class="n">por_nome</span><span class="p">[</span><span class="n">equipamento</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">equipamento</span>
-<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_nome</span><span class="p">[</span><span class="s2">"OLT-NORTE-02"</span><span class="p">][</span><span class="s2">"portas"</span><span class="p">])</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>    <span class="k">if</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"em_servico"</span><span class="p">]:</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"portas"</span><span class="p">]</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>3
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>OLT-CENTRO-01
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>OLT-CENTRO-01 16
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>ONU-SUL-4512 1
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>17
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>8
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>{'nome': 'OLT-CENTRO-01', 'tipo': 'OLT', 'portas': 16, 'em_servico': True}
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>OLT-CENTRO-01
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>OLT-CENTRO-01
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>OLT-CENTRO-01 16
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>ONU-SUL-4512 1
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>17
 </code></pre></div>
 <p><strong>Lista de dicionários</strong> é o formato em que inventário, cadastro e resposta de API
-chegam, sem exceção. Ele combina as duas estruturas pelo que cada uma faz melhor: a
-lista dá a coleção, o dicionário dá o nome de cada campo.</p>
-<p>A leitura de um valor aninhado se faz da esquerda para a direita, um passo por vez:
-<code>inventario[0]</code> é um dicionário, e <code>inventario[0]["nome"]</code> é o nome dele. Quando a
-expressão ficar confusa, quebre em duas linhas com uma variável no meio — o
-programa fica igual e a leitura fica possível.</p>
-<p>O último trecho mostra a conversão que você vai repetir bastante: transformar a
-<strong>lista</strong> em <strong>dicionário indexado pelo nome</strong>, para deixar de percorrer tudo a
-cada consulta.</p>
-<h2 id="compreensoes-o-laco-em-uma-linha">Compreensões: o laço em uma linha<a class="headerlink" href="#compreensoes-o-laco-em-uma-linha" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># Transformacao: o laco da Unidade 1...</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">com_margem</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="n">com_margem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">com_margem</span><span class="p">)</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># ...e a mesma coisa numa linha.</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="nb">print</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">])</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="c1"># Filtro, com if no fim.</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="nb">print</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">])</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="c1"># Das duas coisas juntas sai o relatorio.</span>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="n">nomes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"OLT-A"</span><span class="p">,</span> <span class="s2">"ONU-B"</span><span class="p">,</span> <span class="s2">"OLT-C"</span><span class="p">,</span> <span class="s2">"ONU-D"</span><span class="p">]</span>
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="nb">print</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nomes</span> <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"ONU"</span><span class="p">)])</span>
-<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
-<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="c1"># Compreensao de dicionario: {chave: valor for ...}</span>
-<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="nb">print</span><span class="p">({</span><span class="n">n</span><span class="p">:</span> <span class="n">p</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nomes</span><span class="p">,</span> <span class="n">potencias</span><span class="p">)})</span>
-<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="nb">print</span><span class="p">({</span><span class="n">n</span><span class="p">:</span> <span class="n">p</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nomes</span><span class="p">,</span> <span class="n">potencias</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">})</span>
-<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>
-<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="c1"># Compreensao de conjunto: tipos distintos presentes.</span>
-<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">({</span><span class="n">n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nomes</span><span class="p">}))</span>
+chegam, sem exceção. Ele combina as duas estruturas pelo que cada uma faz melhor:
+a lista dá a coleção, o dicionário dá o nome de cada campo.</p>
+<p>A parte que assusta é o acesso a um valor lá dentro. Ele não tem mistério se você
+o fizer <strong>um passo por vez</strong>, como no exemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">primeiro</span> <span class="o">=</span> <span class="n">inventario</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>      <span class="c1"># isto é um dicionário</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">primeiro</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span>              <span class="c1"># e este é o campo dele</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>[-24.4, -22.8, -30.0, -28.1]
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>[-24.4, -22.8, -30.0, -28.1]
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>[-27.0, -25.1]
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>['ONU-B', 'ONU-D']
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>{'OLT-A': -21.4, 'ONU-B': -19.8, 'OLT-C': -27.0, 'ONU-D': -25.1}
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>{'OLT-C': -27.0, 'ONU-D': -25.1}
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>['OLT', 'ONU']
+<p><code>inventario[0]["nome"]</code> é só essas duas linhas escritas juntas, e se lê da
+esquerda para a direita: <em>"o item zero da lista — que é um dicionário — e dentro
+dele o campo nome"</em>.</p>
+<p><strong>Quando a expressão ficar confusa, quebre-a em duas linhas com uma variável no
+meio.</strong> O programa faz exatamente a mesma coisa, e a leitura fica possível. Isso
+não é recurso de iniciante: é o que se faz em código de produção quando o acesso
+tem três ou quatro níveis.</p>
+<p>E repare no laço que soma as portas: ele é o <strong>acumulador da Unidade 1</strong>, sem uma
+vírgula de diferença. O que mudou foi o formato do dado, não a lógica.</p>
+<h2 id="consultar-pelo-nome-sem-percorrer-tudo">Consultar pelo nome, sem percorrer tudo<a class="headerlink" href="#consultar-pelo-nome-sem-percorrer-tudo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Procurar um equipamento pelo nome percorrendo a lista inteira funciona...</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">inventario</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">:</span> <span class="s2">"OLT"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"ONU-SUL-4512"</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">:</span> <span class="s2">"ONU"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="p">{</span><span class="s2">"nome"</span><span class="p">:</span> <span class="s2">"OLT-NORTE-02"</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">:</span> <span class="s2">"OLT"</span><span class="p">,</span> <span class="s2">"portas"</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">]</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">procurado</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="k">if</span> <span class="n">equipamento</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"OLT-NORTE-02"</span><span class="p">:</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>        <span class="n">procurado</span> <span class="o">=</span> <span class="n">equipamento</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">procurado</span><span class="p">[</span><span class="s2">"portas"</span><span class="p">])</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="c1"># ...mas se voce vai consultar muitas vezes, vale montar UMA VEZ um dicionario</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="c1"># indexado pelo nome, e depois consultar direto.</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="n">por_nome</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="k">for</span> <span class="n">equipamento</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>    <span class="n">por_nome</span><span class="p">[</span><span class="n">equipamento</span><span class="p">[</span><span class="s2">"nome"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">equipamento</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_nome</span><span class="p">[</span><span class="s2">"OLT-NORTE-02"</span><span class="p">][</span><span class="s2">"portas"</span><span class="p">])</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_nome</span><span class="p">[</span><span class="s2">"ONU-SUL-4512"</span><span class="p">][</span><span class="s2">"tipo"</span><span class="p">])</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">por_nome</span><span class="p">))</span>
 </code></pre></div>
-<p>As duas primeiras saídas são idênticas — é o mesmo laço de transformação da Unidade
-1, escrito de duas formas. A compreensão se lê na ordem: <em>"o resultado, para cada
-item da coleção, se a condição"</em>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span>   <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">]</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1">#  o que guardar    de onde vem          quando guardar</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>8
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>8
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>ONU
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>['OLT-CENTRO-01', 'OLT-NORTE-02', 'ONU-SUL-4512']
 </code></pre></div>
-<p>Existem três formas, uma para cada coleção:</p>
-<table>
-<thead>
-<tr>
-<th>Forma</th>
-<th>Produz</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[... for x in col]</code></td>
-<td>lista</td>
-</tr>
-<tr>
-<td><code>{c: v for ... }</code></td>
-<td>dicionário</td>
-</tr>
-<tr>
-<td><code>{... for x in col}</code></td>
-<td>conjunto</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Uma linha não é um prêmio</p>
-<p>Compreensão é ótima para uma transformação ou um filtro simples. Quando aparece
-um <code>if/else</code> dentro, dois <code>for</code> aninhados e uma chamada de função no meio, o
-laço de sempre é mais legível — e legível é o critério. Ninguém ganha nada por
-caber numa linha.</p>
-</div>
+<p>A primeira metade é o padrão da busca, da Unidade 1: percorrer a lista até achar.
+Funciona — e é a resposta certa quando você precisa de um equipamento só.</p>
+<p>A segunda metade resolve o outro caso: se você vai consultar <strong>muitos</strong> nomes,
+percorrer a lista inteira a cada consulta fica caro. Montar uma vez o dicionário
+<code>{nome: equipamento}</code> e depois consultar direto é a mesma ideia do índice
+remissivo de um livro — paga-se uma vez para não procurar página por página
+depois.</p>
 <h2 id="onde-isso-e-usado-de-verdade">Onde isso é usado de verdade<a class="headerlink" href="#onde-isso-e-usado-de-verdade" title="Permanent link">&para;</a></h2>
 <p>A comparação de conjuntos é a operação por trás do que o mercado chama de
 <strong>detecção de <em>drift</em></strong> ou verificação de conformidade: o
@@ -2634,8 +2609,8 @@ chegar na sua variável é isto aqui.</p>
 <td>algum item não tem aquele campo; <code>.get</code> resolve</td>
 </tr>
 <tr>
-<td>a compreensão devolveu <code>None</code> em toda posição</td>
-<td>você chamou uma função sem <code>return</code> dentro dela</td>
+<td><code>TypeError: list indices must be integers</code></td>
+<td>você usou <code>inventario["nome"]</code>: o <code>["nome"]</code> é do dicionário de dentro, não da lista</td>
 </tr>
 </tbody>
 </table>
@@ -2645,13 +2620,13 @@ chegar na sua variável é isto aqui.</p>
 <li><code>-</code>, <code>&amp;</code>, <code>|</code>, <code>^</code> comparam conjuntos — e <code>hoje - ontem</code> é o relatório de mudança.</li>
 <li>Tupla é sequência imutável; serve de chave composta de dicionário.</li>
 <li>Lista de dicionários é o formato de todo inventário e de toda resposta de API.</li>
-<li>Compreensão é o laço de transformação ou de filtro numa linha — quando continua
-  legível.</li>
+<li>Acesso aninhado se lê da esquerda para a direita, e pode sempre ser quebrado em
+  duas linhas com uma variável no meio.</li>
+<li>Indexar a lista por nome, uma vez, evita percorrê-la a cada consulta.</li>
 </ul>
 <h2 id="para-praticar">Para praticar<a class="headerlink" href="#para-praticar" title="Permanent link">&para;</a></h2>
 <p><a href="../../listas/lista06/">Lista 06 · Conjuntos, tuplas e aninhamento</a> — comparação de
-coletas de inventário, consultas sobre lista de dicionários e as primeiras
-compreensões.</p>
+coletas de inventário e consultas sobre lista de dicionários.</p>
 
 
 
