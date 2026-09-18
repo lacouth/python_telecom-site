@@ -12,13 +12,13 @@
         <meta name="author" content="lacouth">
       
       
-        <link rel="canonical" href="https://lacouth.github.io/python_telecom-site/unidade5-modelagem/">
+        <link rel="canonical" href="https://lacouth.github.io/python_telecom-site/aulas/">
       
       
-        <link rel="prev" href="../unidade4-texto/">
+        <link rel="prev" href="../unidade7-redes/">
       
       
-        <link rel="next" href="../unidade6-dados/">
+        <link rel="next" href="../listas/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Visão geral - Python para Telecomunicações — da lógica ao dado da rede</title>
+        <title>Cadernos das aulas - Python para Telecomunicações — da lógica ao dado da rede</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unidade-5-modelagem" class="md-skip">
+        <a href="#cadernos-das-aulas" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Visão geral
+              Cadernos das aulas
             
           </span>
         </div>
@@ -1044,8 +1044,6 @@
       
   
   
-    
-  
   
   
     
@@ -1064,15 +1062,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../unidade5-modelagem/" class="md-nav__link ">
               
   
   
@@ -1091,7 +1089,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1344,10 +1342,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../aulas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1363,6 +1370,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -2094,37 +2102,67 @@
   
 
 
-<h1 id="unidade-5-modelagem">Unidade 5 · Modelagem<a class="headerlink" href="#unidade-5-modelagem" title="Permanent link">&para;</a></h1>
-<p><strong>Semana 11.</strong> Um equipamento tem nome, IP, modelo, estado e uma porção de
-medições. Carregar isso em cinco listas paralelas funciona até a hora em que
-alguém ordena uma delas.</p>
+<h1 id="cadernos-das-aulas">Cadernos das aulas<a class="headerlink" href="#cadernos-das-aulas" title="Permanent link">&para;</a></h1>
+<p>Cada aula tem um caderno com os exemplos que vamos rodar juntos no
+laboratório. Ele vem <strong>sem as saídas</strong> de propósito: em cada exemplo você
+escreve antes o que acha que vai acontecer, e só depois roda a célula.</p>
+<div class="admonition tip">
+<p class="admonition-title">A previsão errada é a parte que ensina</p>
+<p>Não apague o que você escreveu antes de rodar. Riscar a previsão errada
+ao lado da certa é o que faz este caderno valer alguma coisa quando você
+voltar a ele em casa.</p>
+</div>
 <table>
 <thead>
 <tr>
-<th>Capítulo</th>
-<th>Conceito de lógica</th>
-<th>Aplicação</th>
+<th>Aula</th>
+<th>Tema</th>
+<th>Caderno</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>10. Classes e <code>dataclass</code></td>
-<td>estado e comportamento juntos, método, encapsulamento</td>
-<td><code>Equipamento</code>, <code>Enlace</code>, <code>Alarme</code></td>
+<td>01</td>
+<td>O ambiente, os tipos e o primeiro script</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula01.ipynb">Abrir no Colab</a></td>
 </tr>
 <tr>
-<td>11. Módulos, organização e testes</td>
-<td><code>import</code>, arquivo como módulo, teste automatizado</td>
-<td>o pacotinho de funções do curso, reutilizado no projeto</td>
+<td>02</td>
+<td>Strings</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula02.ipynb">Abrir no Colab</a></td>
+</tr>
+<tr>
+<td>03</td>
+<td>Listas e os padrões de laço</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula03.ipynb">Abrir no Colab</a></td>
+</tr>
+<tr>
+<td>04</td>
+<td>Funções</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula04.ipynb">Abrir no Colab</a></td>
+</tr>
+<tr>
+<td>05</td>
+<td>Dicionários</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula05.ipynb">Abrir no Colab</a></td>
+</tr>
+<tr>
+<td>06</td>
+<td>Conjuntos, tuplas e inventário</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula06.ipynb">Abrir no Colab</a></td>
+</tr>
+<tr>
+<td>07</td>
+<td>Arquivos de texto e CSV</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula07.ipynb">Abrir no Colab</a></td>
+</tr>
+<tr>
+<td>08</td>
+<td>JSON, datas e exceções</td>
+<td><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula08.ipynb">Abrir no Colab</a></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Ao fim desta unidade você consegue</strong> organizar um script de coleta em arquivos
-separados, com as funções de cálculo testadas fora do caminho principal.</p>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Os capítulos desta unidade são publicados antes da semana em que são dados.</p>
-</div>
 
 
 
