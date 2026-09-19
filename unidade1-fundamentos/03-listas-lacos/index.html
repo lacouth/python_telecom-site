@@ -2542,73 +2542,112 @@ saída logo abaixo antes de passar para o próximo.</p>
 esse acumulador que dá total, média e qualquer outra conta que envolva a lista
 inteira.</p>
 <p>Declará-la dentro do laço é o erro clássico: ela seria zerada a cada volta, e no
-fim valeria só o último item.</p>
-<h3 id="2-contador-quantos-atendem-a-condicao">2. Contador — quantos atendem à condição<a class="headerlink" href="#2-contador-quantos-atendem-a-condicao" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Padrao 2 - CONTADOR: conta quantos itens atendem a uma condicao.</span>
+fim valeria só o último item. Vale ver isso acontecendo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># O MESMO laco, com o acumulador criado no lugar errado.</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">fora</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">certo</span> <span class="o">=</span> <span class="mi">0</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">:</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="n">fora</span> <span class="o">=</span> <span class="n">fora</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">certo</span> <span class="o">=</span> <span class="n">certo</span> <span class="o">+</span> <span class="n">p</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">certo</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">fora</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">errado</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">errado</span> <span class="o">=</span> <span class="mi">0</span>             <span class="c1"># zerado a cada volta</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">errado</span> <span class="o">=</span> <span class="n">errado</span> <span class="o">+</span> <span class="n">p</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">errado</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>-93.3
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>-25.1
+</code></pre></div>
+<p>O segundo laço imprimiu exatamente o último elemento da lista. E repare no pior
+desse erro: <strong>ele não dá mensagem nenhuma</strong> — o programa roda e devolve um número
+plausível.</p>
+<h3 id="2-contador-quantos-atendem-a-condicao">2. Contador — quantos atendem à condição<a class="headerlink" href="#2-contador-quantos-atendem-a-condicao" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Padrao 2 - CONTADOR: conta quantos itens atendem a uma condicao.</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">fora</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">fora</span> <span class="o">=</span> <span class="n">fora</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">fora</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>2
 </code></pre></div>
 <p>Mesma estrutura do acumulador, com duas diferenças: o <code>if</code> decide quem conta, e o
 que se soma é sempre <code>1</code> — porque a pergunta é "quantos", não "quanto".</p>
 <h3 id="3-filtro-uma-lista-nova-menor">3. Filtro — uma lista nova, menor<a class="headerlink" href="#3-filtro-uma-lista-nova-menor" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Padrao 3 - FILTRO: monta uma lista NOVA, so com o que interessa.</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">criticas</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">:</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">criticas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">criticas</span><span class="p">)</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencias</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Padrao 3 - FILTRO: monta uma lista NOVA, so com o que interessa.</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">criticas</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">25</span><span class="p">:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="n">criticas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">criticas</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencias</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[-27.0, -25.1]
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>[-21.4, -19.8, -27.0, -25.1]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[-27.0, -25.1]
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>[-21.4, -19.8, -27.0, -25.1]
 </code></pre></div>
 <p>A lista nova nasce vazia antes do laço e cresce com <code>append</code>. Repare na segunda
 linha da saída: <strong>a lista original não mudou</strong>. Filtrar não é remover — e é isso
 que se quer quando ela ainda vai ser usada para calcular a média.</p>
 <h3 id="4-extremo-o-maior-ou-o-menor">4. Extremo — o maior ou o menor<a class="headerlink" href="#4-extremo-o-maior-ou-o-menor" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Padrao 4 - EXTREMO: guarda um candidato e vai trocando por um melhor.</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">pior</span> <span class="o">=</span> <span class="n">potencias</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">pior</span><span class="p">:</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="n">pior</span> <span class="o">=</span> <span class="n">p</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">pior</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Padrao 4 - EXTREMO: guarda um candidato e vai trocando por um melhor.</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">pior</span> <span class="o">=</span> <span class="n">potencias</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">pior</span><span class="p">:</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        <span class="n">pior</span> <span class="o">=</span> <span class="n">p</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">pior</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>-27.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>-27.0
 </code></pre></div>
 <p>Guarde um "candidato" e troque-o sempre que achar algo melhor. O candidato começa
 valendo <code>potencias[0]</code>, e não zero.</p>
 <p>Começar em zero funciona para uma lista de valores positivos — notas, idades,
 contagens — e falha em silêncio numa lista de potências em dBm, que são todas
-negativas: nenhuma seria menor que zero, e o resultado sairia <code>0</code>. Começar pelo
+negativas: nenhuma seria menor que zero, e o resultado sairia <code>0</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># O candidato a extremo comecando em zero, numa lista de valores negativos.</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">maior_zero</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="n">maior_zero</span><span class="p">:</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        <span class="n">maior_zero</span> <span class="o">=</span> <span class="n">p</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">maior_zero</span><span class="p">)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">maior</span> <span class="o">=</span> <span class="n">potencias</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="n">maior</span><span class="p">:</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        <span class="n">maior</span> <span class="o">=</span> <span class="n">p</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">maior</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>0
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>-19.8
+</code></pre></div>
+<p>O primeiro laço devolveu <code>0</code>, que não é nem uma das medições. Começar pelo
 primeiro elemento funciona sempre. O preço é ter que tratar a lista vazia, que não
 tem primeiro elemento.</p>
 <h3 id="5-transformacao-mesma-quantidade-valores-novos">5. Transformação — mesma quantidade, valores novos<a class="headerlink" href="#5-transformacao-mesma-quantidade-valores-novos" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Padrao 5 - TRANSFORMACAO: mesma quantidade de itens, valores novos.</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">com_margem</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="n">com_margem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">com_margem</span><span class="p">)</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">potencias</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">com_margem</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Padrao 5 - TRANSFORMACAO: mesma quantidade de itens, valores novos.</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">com_margem</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">potencias</span><span class="p">:</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">com_margem</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">com_margem</span><span class="p">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">potencias</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">com_margem</span><span class="p">))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[-24.4, -22.8, -30.0, -28.1]
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>4 4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>[-24.4, -22.8, -30.0, -28.1]
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>4 4
 </code></pre></div>
 <p>É o filtro <strong>sem o <code>if</code></strong>: todo item entra, mas modificado. A lista de saída tem
 sempre o mesmo tamanho da de entrada — a última linha confere isso.</p>
@@ -2665,38 +2704,38 @@ cliente. Quase todo exercício desta unidade cobra esse caso, porque em campo
 ele acontece.</p>
 </div>
 <h2 id="percorrendo-com-posicao">Percorrendo com posição<a class="headerlink" href="#percorrendo-com-posicao" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">sites</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="s2">"ONU-SUL-4512"</span><span class="p">,</span> <span class="s2">"OLT-NORTE-02"</span><span class="p">]</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">]</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># So o valor</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">sites</span><span class="p">:</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Posicao e valor ao mesmo tempo</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">site</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sites</span><span class="p">):</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">site</span><span class="p">)</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># Duas listas em paralelo</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="k">for</span> <span class="n">site</span><span class="p">,</span> <span class="n">potencia</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sites</span><span class="p">,</span> <span class="n">potencias</span><span class="p">):</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">site</span><span class="si">:</span><span class="s2">&lt;16</span><span class="si">}{</span><span class="n">potencia</span><span class="si">:</span><span class="s2">&gt;8.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
-<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="c1"># A posicao do pior enlace, nao so o valor</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="n">pior</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">potencias</span><span class="p">):</span>
-<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">potencias</span><span class="p">[</span><span class="n">pior</span><span class="p">]:</span>
-<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>        <span class="n">pior</span> <span class="o">=</span> <span class="n">i</span>
-<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">pior</span><span class="p">,</span> <span class="n">sites</span><span class="p">[</span><span class="n">pior</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">sites</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="s2">"ONU-SUL-4512"</span><span class="p">,</span> <span class="s2">"OLT-NORTE-02"</span><span class="p">]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">]</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># So o valor</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">sites</span><span class="p">:</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1"># Posicao e valor ao mesmo tempo</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">site</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sites</span><span class="p">):</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">site</span><span class="p">)</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="c1"># Duas listas em paralelo</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="k">for</span> <span class="n">site</span><span class="p">,</span> <span class="n">potencia</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sites</span><span class="p">,</span> <span class="n">potencias</span><span class="p">):</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">site</span><span class="si">:</span><span class="s2">&lt;16</span><span class="si">}{</span><span class="n">potencia</span><span class="si">:</span><span class="s2">&gt;8.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="c1"># A posicao do pior enlace, nao so o valor</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="n">pior</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">potencias</span><span class="p">):</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">potencias</span><span class="p">[</span><span class="n">pior</span><span class="p">]:</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>        <span class="n">pior</span> <span class="o">=</span> <span class="n">i</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">pior</span><span class="p">,</span> <span class="n">sites</span><span class="p">[</span><span class="n">pior</span><span class="p">])</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>OLT-CENTRO-01
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ONU-SUL-4512
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>OLT-NORTE-02
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>0 OLT-CENTRO-01
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>1 ONU-SUL-4512
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>2 OLT-NORTE-02
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>OLT-CENTRO-01     -21.40
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>ONU-SUL-4512      -27.00
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>OLT-NORTE-02      -19.80
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>1 ONU-SUL-4512
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>OLT-CENTRO-01
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>ONU-SUL-4512
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>OLT-NORTE-02
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>0 OLT-CENTRO-01
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>1 ONU-SUL-4512
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>2 OLT-NORTE-02
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>OLT-CENTRO-01     -21.40
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>ONU-SUL-4512      -27.00
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>OLT-NORTE-02      -19.80
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>1 ONU-SUL-4512
 </code></pre></div>
 <p>Três formas de percorrer, e o critério para escolher:</p>
 <ul>
@@ -2713,27 +2752,27 @@ ele acontece.</p>
 também existe (<code>for i in range(len(lista))</code>), mas só se usa quando nenhuma das
 três formas acima serve.</p>
 <h2 id="ordenar">Ordenar<a class="headerlink" href="#ordenar" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># sorted() devolve uma lista nova; a original fica como estava.</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">potencias</span><span class="p">))</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencias</span><span class="p">)</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">potencias</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">potencias</span><span class="p">)[:</span><span class="mi">2</span><span class="p">])</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># .sort() altera a lista no lugar e devolve None.</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">copia</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">]</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="n">resultado</span> <span class="o">=</span> <span class="n">copia</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">copia</span><span class="p">)</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">potencias</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.1</span><span class="p">]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="c1"># sorted() devolve uma lista nova; a original fica como estava.</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">potencias</span><span class="p">))</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencias</span><span class="p">)</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">potencias</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">potencias</span><span class="p">)[:</span><span class="mi">2</span><span class="p">])</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># .sort() altera a lista no lugar e devolve None.</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="n">copia</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.0</span><span class="p">]</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="n">resultado</span> <span class="o">=</span> <span class="n">copia</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">copia</span><span class="p">)</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>[-27.0, -25.1, -21.4, -19.8]
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>[-21.4, -19.8, -27.0, -25.1]
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>[-19.8, -21.4, -25.1, -27.0]
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>[-27.0, -25.1]
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>[-27.0, -21.4, -19.8]
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>None
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>[-27.0, -25.1, -21.4, -19.8]
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>[-21.4, -19.8, -27.0, -25.1]
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>[-19.8, -21.4, -25.1, -27.0]
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>[-27.0, -25.1]
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>[-27.0, -21.4, -19.8]
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>None
 </code></pre></div>
 <p>Duas ferramentas com a mesma finalidade e comportamentos opostos:</p>
 <ul>

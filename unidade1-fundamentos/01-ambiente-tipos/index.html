@@ -2524,29 +2524,49 @@ onde se queria <code>//</code> é o tipo de erro que não aparece: o programa ro
 <p><code>round(valor, casas)</code> aparece em quase todo exercício deste curso, e por um
 motivo prático: <code>10 / 3</code> tem dezesseis casas decimais que ninguém quer ver num
 relatório de potência.</p>
+<p><code>//</code> tem um detalhe que só aparece com número negativo: ele não corta a parte
+decimal, <strong>arredonda para baixo</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># // nao corta a parte decimal: ele arredonda PARA BAIXO.</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>2
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>-3
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>1
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>1
+</code></pre></div>
+<p>Para positivos dá no mesmo, mas <code>-5 // 2</code> é <code>-3</code>, e não <code>-2</code>. O resto acompanha.</p>
 <h2 id="a-conta-que-abre-qualquer-projeto-de-telecom">A conta que abre qualquer projeto de telecom<a class="headerlink" href="#a-conta-que-abre-qualquer-projeto-de-telecom" title="Permanent link">&para;</a></h2>
 <p>Potência óptica não se mede em miliwatts: mede-se em <strong>dBm</strong>, a mesma grandeza
 numa escala logarítmica. A razão é conveniência — em dB, ganhos e perdas ao longo
 do enlace viram soma e subtração em vez de multiplicação e divisão.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># mW -&gt; dBm e o caminho de volta.</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">potencia_mw</span> <span class="o">=</span> <span class="mf">0.001</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">potencia_dbm</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">potencia_mw</span><span class="p">)</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia_dbm</span><span class="p">)</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">de_volta</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">potencia_dbm</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">de_volta</span><span class="p">)</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1"># 3 dB a mais e o dobro da potencia -- a conta que todo mundo faz de cabeca.</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1"># mW -&gt; dBm e o caminho de volta.</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">potencia_mw</span> <span class="o">=</span> <span class="mf">0.001</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">potencia_dbm</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">potencia_mw</span><span class="p">)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia_dbm</span><span class="p">)</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">de_volta</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">potencia_dbm</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">de_volta</span><span class="p">)</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="c1"># 3 dB a mais e o dobro da potencia -- a conta que todo mundo faz de cabeca.</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>-30.0
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>0.001
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>3.01
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>-30.0
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>0.001
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>3.01
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>6.02
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>9.03
 </code></pre></div>
 <p>Guarde o último número: <strong>3 dB é o dobro da potência</strong>. Um enlace que perde 3 dB
-entregou metade do que recebeu. É o tipo de conta que você vai fazer de cabeça
+entregou metade do que recebeu. E os 3 dB de cada dobra vão se somando: quatro
+vezes a potência são 6 dB, oito vezes são 9 dB — é isso que a escala logarítmica
+faz, transformar multiplicação em soma. É o tipo de conta que você vai fazer de cabeça
 depois de algumas semanas, e o Python serve aqui para conferir a intuição, não
 para substituí-la.</p>
 <p><code>math</code> é o primeiro <strong>módulo</strong> que você importa. Um módulo é uma caixa de
@@ -2555,9 +2575,9 @@ funções prontas que não vêm carregadas por padrão; <code>import math</code>
 <h2 id="escolhendo-o-nome-das-variaveis">Escolhendo o nome das variáveis<a class="headerlink" href="#escolhendo-o-nome-das-variaveis" title="Permanent link">&para;</a></h2>
 <p>O padrão de Python é <code>minusculas_com_underscore</code>, e o nome deve dizer a grandeza
 <strong>e a unidade</strong> quando houver ambiguidade:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">p</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>                  <span class="c1"># e daqui a três semanas, o que era "p"?</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>           <span class="c1"># melhor</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">potencia_dbm</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>       <span class="c1"># o que o material profissional faz</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">p</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>                  <span class="c1"># e daqui a três semanas, o que era "p"?</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>           <span class="c1"># melhor</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">potencia_dbm</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>       <span class="c1"># o que o material profissional faz</span>
 </code></pre></div>
 <p>Isso não é preciosismo de estilo. Confundir <code>mW</code> com <code>dBm</code> é o erro que aparece
 em relatório de campo, e o nome da variável é a defesa mais barata contra ele.</p>
