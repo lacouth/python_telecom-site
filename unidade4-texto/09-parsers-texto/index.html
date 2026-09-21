@@ -1,0 +1,3120 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso de Python para o Tecnólogo em Telecomunicações: consolida lógica de programação e aplica cada conceito a logs, inventários, CDRs, KPIs e automação de equipamentos de rede.">
+      
+      
+        <meta name="author" content="lacouth">
+      
+      
+        <link rel="canonical" href="https://lacouth.github.io/python_telecom-site/unidade4-texto/09-parsers-texto/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../unidade5-modelagem/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>9. Parsers de texto - Python para Telecomunicações — da lógica ao dado da rede</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#9-parsers-de-texto-o-log-de-tres-fabricantes" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Python para Telecomunicações — da lógica ao dado da rede" class="md-header__button md-logo" aria-label="Python para Telecomunicações — da lógica ao dado da rede" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python para Telecomunicações — da lógica ao dado da rede
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              9. Parsers de texto
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lacouth/python_telecom" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    python_telecom
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python para Telecomunicações — da lógica ao dado da rede" class="md-nav__button md-logo" aria-label="Python para Telecomunicações — da lógica ao dado da rede" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python para Telecomunicações — da lógica ao dado da rede
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lacouth/python_telecom" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    python_telecom
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../setup/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiente
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ambiente
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/colab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Colab (recomendado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ambiente-local/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python local (opcional)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade1-fundamentos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 1 · Fundamentos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 1 · Fundamentos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/01-ambiente-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. O ambiente, os tipos e o primeiro script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/02-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Strings: o formato em que a rede fala
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/03-listas-lacos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Listas e os padrões de laço
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/04-funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Funções: dividir para conseguir testar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade2-colecoes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 2 · Coleções
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 2 · Coleções
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2-colecoes/05-dicionarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Dicionários
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2-colecoes/06-conjuntos-tuplas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Conjuntos, tuplas e inventário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade3-arquivos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 3 · Arquivos e formatos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 3 · Arquivos e formatos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade3-arquivos/07-arquivos-csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arquivos de texto e CSV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade3-arquivos/08-json-datas-excecoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. JSON, datas e exceções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliação 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avaliação 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../avaliacoes/a1-regras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regras e formato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 4 · Texto e robustez
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 4 · Texto e robustez
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tres-fabricantes-um-alarme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Três fabricantes, um alarme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ferramentas-novas-para-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ferramentas novas para texto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-formato-uma-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Um formato, uma função
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas-de-traducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas de tradução
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descobrir-o-formato-e-despachar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descobrir o formato e despachar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validar-sem-adivinhar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar sem adivinhar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-linha-que-nao-e-de-ninguem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A linha que não é de ninguém
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-isso-e-usado-de-verdade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde isso é usado de verdade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erros-comuns-deste-capitulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erros comuns deste capítulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-praticar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para praticar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade5-modelagem/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 5 · Modelagem
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 5 · Modelagem
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade6-dados/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 6 · Dados e visualização
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 6 · Dados e visualização
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliação 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avaliação 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../avaliacoes/a2-regras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regras e formato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade7-redes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 7 · Redes e automação
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 7 · Redes e automação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cadernos das aulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../listas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de exercícios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listas de exercícios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 01 · Primeiros scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 02 · Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 03 · Listas e laços
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 04 · Funções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 05 · Dicionários
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 06 · Conjuntos e tuplas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 07 · Arquivos e CSV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 08 · JSON, datas e exceções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 09 · Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../projeto/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projeto Final
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projeto Final
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projeto/temas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temas sugeridos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apêndices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apêndices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/ia-no-curso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IA neste curso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/erros-comuns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Erros comuns do Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dados do curso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet de Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referências
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/proximos-passos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Próximos passos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tres-fabricantes-um-alarme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Três fabricantes, um alarme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ferramentas-novas-para-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ferramentas novas para texto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-formato-uma-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Um formato, uma função
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas-de-traducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas de tradução
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descobrir-o-formato-e-despachar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descobrir o formato e despachar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validar-sem-adivinhar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar sem adivinhar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-linha-que-nao-e-de-ninguem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A linha que não é de ninguém
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-isso-e-usado-de-verdade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde isso é usado de verdade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erros-comuns-deste-capitulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erros comuns deste capítulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-praticar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para praticar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="9-parsers-de-texto-o-log-de-tres-fabricantes">9. Parsers de texto: o log de três fabricantes<a class="headerlink" href="#9-parsers-de-texto-o-log-de-tres-fabricantes" title="Permanent link">&para;</a></h1>
+<p>Até aqui todo log do curso tinha o mesmo formato, e <code>linha.split()[2]</code> dava a
+severidade. A rede de verdade não é assim: ela tem equipamentos de fabricantes
+diferentes, e cada um escreve o <strong>mesmo evento</strong> do seu jeito. Juntar esses logs
+num relatório só é trabalho diário de quem opera uma rede.</p>
+<p>Este capítulo não traz nenhuma ferramenta grande. Ele junta o que você já sabe —
+métodos de string, dicionários, funções e <code>try/except</code> — numa técnica que resolve
+o problema: <strong>um leitor por formato, todos entregando o mesmo dicionário</strong>. Esse
+leitor tem nome: é um <strong>parser</strong>.</p>
+<h2 id="tres-fabricantes-um-alarme">Três fabricantes, um alarme<a class="headerlink" href="#tres-fabricantes-um-alarme" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># O mesmo tipo de evento, vindo de tres fabricantes diferentes.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal na porta GPON0/1/3"</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">"Mar  2 14:05:10 SWITCH-NORTE-02 %LINK-3-UPDOWN: Interface Gi0/12, changed state to down"</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s1">'ts=2026-03-02T14:07:44 host=RADIO-OESTE-01 sev=warn msg="enlace degradado"'</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># O split()[2] da Unidade 1 pegava a severidade. Agora:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CRITICAL
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>14:05:10
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sev=warn
+</code></pre></div>
+<p>Só a primeira linha deu a severidade. Na segunda, a posição 2 é a hora; na
+terceira, é o texto <code>sev=warn</code>. Os três formatos:</p>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Quem usa</th>
+<th>Como a linha é</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>as OLTs (o formato do curso até aqui)</td>
+<td>data, hora, severidade, equipamento, mensagem</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>os switches, no estilo do syslog Cisco</td>
+<td>mês abreviado <strong>sem ano</strong>, dia, hora, equipamento, <code>%FACILIDADE-SEVERIDADE-CÓDIGO:</code> e mensagem</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>os rádios, no estilo chave=valor</td>
+<td><code>ts=</code>, <code>host=</code>, <code>sev=</code> e <code>msg="..."</code> com a mensagem entre aspas</td>
+</tr>
+</tbody>
+</table>
+<p>Os três dizem as mesmas quatro coisas — quando, quão grave, quem e o quê —, com
+palavras e posições diferentes. O objetivo do capítulo é transformar qualquer uma
+das três linhas <strong>no mesmo dicionário</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="s2">"momento"</span><span class="p">:</span> <span class="s2">"2026-03-02 14:03:17"</span><span class="p">,</span> <span class="s2">"severidade"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a> <span class="s2">"equipamento"</span><span class="p">:</span> <span class="s2">"OLT-CENTRO-01"</span><span class="p">,</span> <span class="s2">"mensagem"</span><span class="p">:</span> <span class="s2">"perda de sinal na porta GPON0/1/3"</span><span class="p">}</span>
+</code></pre></div>
+<p>Transformar formatos diferentes numa forma só chama-se <strong>normalizar</strong>. Depois de
+normalizado, o log dos três fabricantes vira uma lista de dicionários — e a partir
+daí é a contagem e o agrupamento do capítulo 5.</p>
+<p>Repare no momento: <code>AAAA-MM-DD HH:MM:SS</code>. É o formato em que a ordem alfabética
+coincide com a do calendário (capítulo 8), então dá para ordenar alarmes de
+fabricantes diferentes comparando texto.</p>
+<h2 id="ferramentas-novas-para-texto">Ferramentas novas para texto<a class="headerlink" href="#ferramentas-novas-para-texto" title="Permanent link">&para;</a></h2>
+<p>Quatro métodos de string, cada um visto sozinho antes de ser usado.</p>
+<p><strong><code>partition</code></strong> corta o texto na <strong>primeira</strong> ocorrência de um separador e devolve
+três pedaços: o que vem antes, o separador e o que vem depois. É o mesmo que achar
+a posição com <code>find</code> e fatiar dos dois lados — que é mostrado primeiro, para você
+ver que não há mágica:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">par</span> <span class="o">=</span> <span class="s2">"host=RADIO-OESTE-01"</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># O jeito que voce ja sabe: achar a posicao do "=" e fatiar dos dois lados.</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">posicao</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">posicao</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">par</span><span class="p">[:</span><span class="n">posicao</span><span class="p">],</span> <span class="n">par</span><span class="p">[</span><span class="n">posicao</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:])</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># partition faz o mesmo numa linha: devolve (antes, separador, depois).</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">par</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">"="</span><span class="p">))</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">chave</span><span class="p">,</span> <span class="n">separador</span><span class="p">,</span> <span class="n">valor</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Corta so na PRIMEIRA ocorrencia -- o resto fica inteiro no "depois".</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"%LINK-3-UPDOWN: Interface Gi0/12, changed state to down"</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">": "</span><span class="p">))</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="c1"># Separador ausente: nao da erro, o "depois" vem vazio.</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"-- MARK --"</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">"="</span><span class="p">))</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"-- MARK --"</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">"="</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>4
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>host RADIO-OESTE-01
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>('host', '=', 'RADIO-OESTE-01')
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>host RADIO-OESTE-01
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>('%LINK-3-UPDOWN', ': ', 'Interface Gi0/12, changed state to down')
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>('-- MARK --', '', '')
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>-1
+</code></pre></div>
+<p>Dois detalhes que tornam o <code>partition</code> bom para dado sujo: ele corta <strong>uma vez só</strong>
+(o resto da mensagem, com seus <code>:</code> e vírgulas, fica inteiro), e, quando o separador
+não existe, <strong>não dá erro</strong> — devolve o texto inteiro no primeiro pedaço e os
+outros dois vazios. O <code>find</code>, nesse caso, devolve <code>-1</code>.</p>
+<p><strong><code>split</code> com <code>maxsplit</code></strong> quebra no máximo N vezes. E aqui aparece a diferença
+entre <code>split()</code> e <code>split(" ")</code>, que o formato B expõe por causa dos dois espaços
+antes do dia:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">linha</span> <span class="o">=</span> <span class="s2">"Mar  2 14:05:10 SWITCH-NORTE-02 %LINK-3-UPDOWN: Interface Gi0/12, changed state to down"</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Com " " (um espaco), cada espaco separa -- e os dois espacos antes do "2"</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># criam um pedaco vazio.</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)[:</span><span class="mi">4</span><span class="p">])</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Sem argumento, qualquer quantidade de espaco conta como um separador so.</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="mi">4</span><span class="p">])</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># maxsplit: quebra no maximo N vezes; o resto da linha fica num pedaco so.</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">campos</span><span class="p">))</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">campos</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>['Mar', '', '2', '14:05:10']
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>['Mar', '2', '14:05:10', 'SWITCH-NORTE-02']
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>5
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>%LINK-3-UPDOWN: Interface Gi0/12, changed state to down
+</code></pre></div>
+<p><code>split(" ")</code> trata cada espaço como um separador, e dois espaços seguidos deixam
+um pedaço vazio no meio — o dia foi para a posição 2. <code>split()</code> sem argumento
+trata qualquer sequência de espaços como um separador só. <strong>Para log, use
+<code>split()</code>.</strong> E com <code>maxsplit=4</code>, os quatro primeiros campos saem separados e a
+mensagem inteira fica no quinto, com os espaços dela intactos.</p>
+<p><strong><code>startswith</code>, <code>endswith</code>, <code>isdigit</code> e <code>strip</code> com argumento</strong> respondem
+perguntas sobre o texto sem quebrá-lo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">linha</span> <span class="o">=</span> <span class="s1">'ts=2026-03-02T14:07:44 host=RADIO-OESTE-01 sev=warn msg="enlace degradado"'</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># startswith / endswith: o texto comeca (ou termina) com isto?</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">linha</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"ts="</span><span class="p">))</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">linha</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'"'</span><span class="p">))</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># isdigit: todos os caracteres sao algarismos? (texto vazio da False)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"2026"</span><span class="o">.</span><span class="n">isdigit</span><span class="p">(),</span> <span class="s2">"20a6"</span><span class="o">.</span><span class="n">isdigit</span><span class="p">(),</span> <span class="s2">"-5"</span><span class="o">.</span><span class="n">isdigit</span><span class="p">(),</span> <span class="s2">""</span><span class="o">.</span><span class="n">isdigit</span><span class="p">())</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># strip com argumento: tira ESSES caracteres das pontas, em vez de espacos.</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nb">print</span><span class="p">(</span><span class="s1">'"enlace degradado"'</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'"'</span><span class="p">))</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"%LINK-3-UPDOWN"</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"%"</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>True
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>True
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>True False False False
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>enlace degradado
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>LINK-3-UPDOWN
+</code></pre></div>
+<p>Repare que <code>"-5".isdigit()</code> é <code>False</code>: o sinal de menos não é algarismo. E
+<code>strip('"')</code> tira as aspas das pontas, do mesmo jeito que <code>strip()</code> tira espaços.</p>
+<h2 id="um-formato-uma-funcao">Um formato, uma função<a class="headerlink" href="#um-formato-uma-funcao" title="Permanent link">&para;</a></h2>
+<p>Com as ferramentas na mão, cada formato ganha <strong>uma função</strong>, e as três devolvem
+um dicionário com as mesmas quatro chaves. O formato A é o mais simples:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_formato_a</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="sd">"""Formato A: 2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 mensagem..."""</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="s2">"momento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">campos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="s2">"severidade"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="s2">"equipamento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>        <span class="s2">"mensagem"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="p">}</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="n">alarme</span> <span class="o">=</span> <span class="n">le_formato_a</span><span class="p">(</span><span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal na porta GPON0/1/3"</span><span class="p">)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">[</span><span class="s2">"severidade"</span><span class="p">])</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">[</span><span class="s2">"mensagem"</span><span class="p">])</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>CRITICAL
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>perda de sinal na porta GPON0/1/3
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>{'momento': '2026-03-02 14:03:17', 'severidade': 'CRITICAL', 'equipamento': 'OLT-CENTRO-01', 'mensagem': 'perda de sinal na porta GPON0/1/3'}
+</code></pre></div>
+<p>O <code>maxsplit=4</code> resolve o problema da mensagem com espaços, que no capítulo 2 exigia
+um <code>" ".join(campos[4:])</code>.</p>
+<p>Os formatos B e C precisam de mais uma peça antes.</p>
+<h2 id="tabelas-de-traducao">Tabelas de tradução<a class="headerlink" href="#tabelas-de-traducao" title="Permanent link">&para;</a></h2>
+<p>Cada fabricante diz a mesma coisa com outras palavras: o B escreve a severidade
+como um número de 0 a 7; o C escreve <code>crit</code>, <code>warn</code>, <code>info</code>; o B escreve o mês como
+<code>Mar</code>. Traduzir é trabalho para um <strong>dicionário</strong> — o capítulo 5 usado como tabela:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Tabelas de traducao: cada fabricante diz a mesma coisa com outras palavras.</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">SEVERIDADE_POR_NUMERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"0"</span><span class="p">:</span> <span class="s2">"EMERGENCY"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">:</span> <span class="s2">"ALERT"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">:</span> <span class="s2">"ERROR"</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>                         <span class="s2">"4"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"5"</span><span class="p">:</span> <span class="s2">"NOTICE"</span><span class="p">,</span> <span class="s2">"6"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">,</span> <span class="s2">"7"</span><span class="p">:</span> <span class="s2">"DEBUG"</span><span class="p">}</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">SEVERIDADE_C</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"crit"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"warn"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"info"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">}</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">MESES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Jan"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Feb"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Mar"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Apr"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"May"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"Jun"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>         <span class="s2">"Jul"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"Aug"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"Sep"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"Oct"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"Nov"</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s2">"Dec"</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># O codigo do formato B carrega a severidade como numero, no meio.</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">codigo</span> <span class="o">=</span> <span class="s2">"%LINK-3-UPDOWN"</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">partes</span> <span class="o">=</span> <span class="n">codigo</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"%"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">partes</span><span class="p">)</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">SEVERIDADE_POR_NUMERO</span><span class="p">[</span><span class="n">partes</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">SEVERIDADE_C</span><span class="p">[</span><span class="s2">"warn"</span><span class="p">])</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="c1"># O mes em texto vira numero -- e o numero vira "03" com o :02d da Unidade 1.</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="n">mes</span> <span class="o">=</span> <span class="n">MESES</span><span class="p">[</span><span class="s2">"Mar"</span><span class="p">]</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2026-</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="mi">2</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>['LINK', '3', 'UPDOWN']
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ERROR
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>WARNING
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>2026-03-02
+</code></pre></div>
+<p>As chaves de <code>SEVERIDADE_POR_NUMERO</code> são <strong>texto</strong> (<code>"3"</code>), e não número: o que sai
+do <code>split</code> é texto, e assim a consulta é direta, sem conversão. Os nomes em
+maiúsculas são uma convenção de Python para "tabela fixa, que o programa não
+altera".</p>
+<p>Com as tabelas, o formato B:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">MESES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Jan"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Feb"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Mar"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Apr"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"May"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"Jun"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>         <span class="s2">"Jul"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"Aug"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"Sep"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"Oct"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"Nov"</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s2">"Dec"</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">SEVERIDADE_POR_NUMERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"0"</span><span class="p">:</span> <span class="s2">"EMERGENCY"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">:</span> <span class="s2">"ALERT"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">:</span> <span class="s2">"ERROR"</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>                         <span class="s2">"4"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"5"</span><span class="p">:</span> <span class="s2">"NOTICE"</span><span class="p">,</span> <span class="s2">"6"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">,</span> <span class="s2">"7"</span><span class="p">:</span> <span class="s2">"DEBUG"</span><span class="p">}</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_formato_b</span><span class="p">(</span><span class="n">linha</span><span class="p">,</span> <span class="n">ano</span><span class="o">=</span><span class="mi">2026</span><span class="p">):</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="sd">"""Formato B (estilo Cisco): Mar  2 14:05:10 SWITCH-NORTE-02 %LINK-3-UPDOWN: texto"""</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="n">mes</span> <span class="o">=</span> <span class="n">MESES</span><span class="p">[</span><span class="n">campos</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    <span class="n">dia</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">campos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="n">codigo</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mensagem</span> <span class="o">=</span> <span class="n">campos</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">": "</span><span class="p">)</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>    <span class="n">partes</span> <span class="o">=</span> <span class="n">codigo</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"%"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>        <span class="s2">"momento"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ano</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dia</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">campos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        <span class="s2">"severidade"</span><span class="p">:</span> <span class="n">SEVERIDADE_POR_NUMERO</span><span class="p">[</span><span class="n">partes</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>        <span class="s2">"equipamento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>        <span class="s2">"mensagem"</span><span class="p">:</span> <span class="n">mensagem</span><span class="p">,</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span class="p">}</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="n">linha</span> <span class="o">=</span> <span class="s2">"Mar  2 14:05:10 SWITCH-NORTE-02 %LINK-3-UPDOWN: Interface Gi0/12, changed state to down"</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="n">alarme</span> <span class="o">=</span> <span class="n">le_formato_b</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">[</span><span class="s2">"momento"</span><span class="p">])</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">[</span><span class="s2">"severidade"</span><span class="p">])</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>2026-03-02 14:05:10
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ERROR
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>{'momento': '2026-03-02 14:05:10', 'severidade': 'ERROR', 'equipamento': 'SWITCH-NORTE-02', 'mensagem': 'Interface Gi0/12, changed state to down'}
+</code></pre></div>
+<p>Três coisas acontecem aqui que não aconteciam no A: o <strong>ano</strong> não vem na linha e
+entra como parâmetro com valor padrão (capítulo 4); o mês passa pela tabela; e a
+mensagem é separada do código pelo <code>partition(": ")</code>, que corta só no primeiro <code>:</code>.</p>
+<p>E o formato C, em que a mensagem tem espaços <strong>dentro das aspas</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">SEVERIDADE_C</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"crit"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"warn"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"info"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">}</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_formato_c</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="sd">"""Formato C (chave=valor): ts=... host=... sev=... msg="texto" """</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="c1"># A mensagem tem espacos dentro: separe-a ANTES de quebrar o resto.</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">antes</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mensagem</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">" msg="</span><span class="p">)</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">antes</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        <span class="n">chave</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">valor</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>        <span class="n">campos</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">valor</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>        <span class="s2">"momento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="s2">"ts"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"T"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">),</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        <span class="s2">"severidade"</span><span class="p">:</span> <span class="n">SEVERIDADE_C</span><span class="p">[</span><span class="n">campos</span><span class="p">[</span><span class="s2">"sev"</span><span class="p">]],</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>        <span class="s2">"equipamento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="s2">"host"</span><span class="p">],</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>        <span class="s2">"mensagem"</span><span class="p">:</span> <span class="n">mensagem</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'"'</span><span class="p">),</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>    <span class="p">}</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="n">alarme</span> <span class="o">=</span> <span class="n">le_formato_c</span><span class="p">(</span><span class="s1">'ts=2026-03-02T14:07:44 host=RADIO-OESTE-01 sev=warn msg="enlace degradado"'</span><span class="p">)</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">[</span><span class="s2">"momento"</span><span class="p">])</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">alarme</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>2026-03-02 14:07:44
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>{'momento': '2026-03-02 14:07:44', 'severidade': 'WARNING', 'equipamento': 'RADIO-OESTE-01', 'mensagem': 'enlace degradado'}
+</code></pre></div>
+<p>A ordem importa: primeiro se separa a mensagem com <code>partition(" msg=")</code>, <strong>depois</strong>
+se quebra o resto em pares. Se o <code>split()</code> viesse primeiro, <code>"enlace degradado"</code>
+seria cortado em dois pedaços e o segundo não teria <code>=</code>.</p>
+<h2 id="descobrir-o-formato-e-despachar">Descobrir o formato e despachar<a class="headerlink" href="#descobrir-o-formato-e-despachar" title="Permanent link">&para;</a></h2>
+<p>Falta decidir, para cada linha, <strong>qual</strong> das três funções chamar. Cada formato tem
+um sinal que o denuncia logo no começo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">MESES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Jan"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Feb"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Mar"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Apr"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"May"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"Jun"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>         <span class="s2">"Jul"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"Aug"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"Sep"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"Oct"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"Nov"</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s2">"Dec"</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">detecta_formato</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="sd">"""Diz de qual fabricante e a linha: "A", "B", "C" ou None."""</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="k">if</span> <span class="n">linha</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"ts="</span><span class="p">):</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>        <span class="k">return</span> <span class="s2">"C"</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    <span class="k">if</span> <span class="n">linha</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="ow">in</span> <span class="n">MESES</span> <span class="ow">and</span> <span class="s2">"%"</span> <span class="ow">in</span> <span class="n">linha</span><span class="p">:</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>        <span class="k">return</span> <span class="s2">"B"</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    <span class="k">if</span> <span class="n">linha</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">and</span> <span class="n">linha</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"-"</span><span class="p">:</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>        <span class="k">return</span> <span class="s2">"A"</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="n">linhas</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>    <span class="s2">"2026-03-02 14:03:17 CRITICAL OLT-CENTRO-01 perda de sinal na porta GPON0/1/3"</span><span class="p">,</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>    <span class="s2">"Mar  2 14:05:10 SWITCH-NORTE-02 %LINK-3-UPDOWN: Interface Gi0/12, changed state to down"</span><span class="p">,</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>    <span class="s1">'ts=2026-03-02T14:07:44 host=RADIO-OESTE-01 sev=warn msg="enlace degradado"'</span><span class="p">,</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>    <span class="s2">"-- MARK --"</span><span class="p">,</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>    <span class="s2">""</span><span class="p">,</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="p">]</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="n">por_formato</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">linhas</span><span class="p">:</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>    <span class="n">formato</span> <span class="o">=</span> <span class="n">detecta_formato</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">formato</span><span class="p">)</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>    <span class="n">por_formato</span><span class="p">[</span><span class="n">formato</span><span class="p">]</span> <span class="o">=</span> <span class="n">por_formato</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">formato</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_formato</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>A
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>B
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>C
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>None
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>None
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>{'A': 1, 'B': 1, 'C': 1, None: 2}
+</code></pre></div>
+<ul>
+<li>C começa com <code>ts=</code>;</li>
+<li>B começa com um mês (<code>linha[:3]</code> é uma chave de <code>MESES</code>) e tem o <code>%</code> do código;</li>
+<li>A começa com quatro algarismos e um hífen — o ano.</li>
+</ul>
+<p>A ordem dos testes vai do sinal mais específico para o mais genérico. E a função
+devolve <code>None</code> para o que não reconhece: <code>-- MARK --</code> (uma linha que alguns
+servidores de syslog escrevem só para dizer "estou vivo") e a linha vazia.</p>
+<p>Com o formato na mão, uma função <code>le_linha</code> chama o leitor certo com <code>if/elif</code> —
+é o que se chama <strong>despachar</strong>. Ela aparece completa na última seção, junto com o
+tratamento das linhas que nenhum leitor entende.</p>
+<h2 id="validar-sem-adivinhar">Validar sem adivinhar<a class="headerlink" href="#validar-sem-adivinhar" title="Permanent link">&para;</a></h2>
+<p>Parte do trabalho com texto é <strong>recusar</strong> o que não está no formato, antes que o
+dado errado entre no relatório. Dois casos de todo dia em rede são o endereço IP e
+o endereço MAC.</p>
+<p>Um IPv4 são quatro números de 0 a 255 separados por ponto. Cada condição vira uma
+linha, e a função devolve <code>False</code> na primeira que falhar:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">ip_valido</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="sd">"""Diz se o texto e um IPv4 no formato a.b.c.d, cada parte de 0 a 255."""</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">partes</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">partes</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="k">for</span> <span class="n">parte</span> <span class="ow">in</span> <span class="n">partes</span><span class="p">:</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">parte</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>            <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">parte</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">255</span><span class="p">:</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>            <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="c1"># Os casos de borda sao o teste de verdade de um validador.</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">"10.0.3.47"</span><span class="p">))</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">" 10.0.3.47 "</span><span class="p">))</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">"10.0.3"</span><span class="p">))</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">"10.0.3.256"</span><span class="p">))</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">"10.0.3.-1"</span><span class="p">))</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">"10.0..47"</span><span class="p">))</span>
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">ip_valido</span><span class="p">(</span><span class="s2">"dez.0.3.47"</span><span class="p">))</span>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="k">assert</span> <span class="n">ip_valido</span><span class="p">(</span><span class="s2">"255.255.255.255"</span><span class="p">)</span>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="k">assert</span> <span class="ow">not</span> <span class="n">ip_valido</span><span class="p">(</span><span class="s2">"256.1.1.1"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>True
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>True
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>False
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>False
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>False
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>False
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>False
+</code></pre></div>
+<p>Os casos de teste são a parte mais importante: parte que falta, <code>256</code>, sinal de
+menos, parte vazia entre dois pontos, letra. Cada um derruba uma condição
+diferente. Um validador testado só com <code>"10.0.3.47"</code> não foi testado.</p>
+<p>Um MAC são seis pares de dígitos <strong>hexadecimais</strong> (0–9 e a–f). O IEEE, que
+distribui esses endereços, escreve com hífens (<code>AC-DE-48-00-11-22</code>); a maioria dos
+equipamentos mostra com dois-pontos e em minúsculas. O validador aceita os dois,
+normalizando antes de conferir:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">HEXADECIMAL</span> <span class="o">=</span> <span class="s2">"0123456789abcdef"</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">mac_valido</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span><span class="sd">"""Diz se o texto e um MAC: 6 pares hexadecimais separados por ":" ou "-"."""</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="n">partes</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"-"</span><span class="p">,</span> <span class="s2">":"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">partes</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    <span class="k">for</span> <span class="n">parte</span> <span class="ow">in</span> <span class="n">partes</span><span class="p">:</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parte</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>            <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>        <span class="k">for</span> <span class="n">caractere</span> <span class="ow">in</span> <span class="n">parte</span><span class="p">:</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>            <span class="k">if</span> <span class="n">caractere</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">HEXADECIMAL</span><span class="p">:</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>                <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>    <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">mac_valido</span><span class="p">(</span><span class="s2">"AC-DE-48-00-11-22"</span><span class="p">))</span>    <span class="c1"># a forma do IEEE, com hifens</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">mac_valido</span><span class="p">(</span><span class="s2">"ac:de:48:00:11:22"</span><span class="p">))</span>    <span class="c1"># a forma mais comum nos equipamentos</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">mac_valido</span><span class="p">(</span><span class="s2">"ac:de:48:00:11"</span><span class="p">))</span>       <span class="c1"># faltou um par</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">mac_valido</span><span class="p">(</span><span class="s2">"ac:de:48:00:11:2g"</span><span class="p">))</span>    <span class="c1"># g nao e hexadecimal</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="nb">print</span><span class="p">(</span><span class="n">mac_valido</span><span class="p">(</span><span class="s2">"acde.4800.1122"</span><span class="p">))</span>       <span class="c1"># outro formato, que este validador recusa</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>True
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>True
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>False
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>False
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>False
+</code></pre></div>
+<p>O último caso é um MAC de verdade — alguns fabricantes o mostram em três grupos de
+quatro, com pontos —, e este validador o recusa. Recusar é uma decisão legítima,
+desde que seja <strong>escrita</strong>: a docstring diz quais formatos a função aceita.</p>
+<h2 id="a-linha-que-nao-e-de-ninguem">A linha que não é de ninguém<a class="headerlink" href="#a-linha-que-nao-e-de-ninguem" title="Permanent link">&para;</a></h2>
+<p>Um log real sempre traz linhas que nenhum leitor entende: a que não é de formato
+nenhum, a que foi cortada no meio da gravação, a que tem um campo corrompido. O
+padrão é o do capítulo 8: a linha ruim é <strong>descartada e registrada</strong>, e o resto
+segue.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># O padrao completo: as pecas das secoes anteriores, juntas. (As funcoes estao</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="c1"># repetidas aqui para o exemplo rodar sozinho.)</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="n">MESES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Jan"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Feb"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Mar"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Apr"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"May"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"Jun"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>         <span class="s2">"Jul"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"Aug"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"Sep"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"Oct"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"Nov"</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s2">"Dec"</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="n">SEVERIDADE_POR_NUMERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"0"</span><span class="p">:</span> <span class="s2">"EMERGENCY"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">:</span> <span class="s2">"ALERT"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">:</span> <span class="s2">"ERROR"</span><span class="p">,</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>                         <span class="s2">"4"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"5"</span><span class="p">:</span> <span class="s2">"NOTICE"</span><span class="p">,</span> <span class="s2">"6"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">,</span> <span class="s2">"7"</span><span class="p">:</span> <span class="s2">"DEBUG"</span><span class="p">}</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="n">SEVERIDADE_C</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"crit"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"warn"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"info"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">}</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_formato_a</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"momento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">campos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">"severidade"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>            <span class="s2">"equipamento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">"mensagem"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">4</span><span class="p">]}</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_formato_b</span><span class="p">(</span><span class="n">linha</span><span class="p">,</span> <span class="n">ano</span><span class="o">=</span><span class="mi">2026</span><span class="p">):</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>    <span class="n">mes</span> <span class="o">=</span> <span class="n">MESES</span><span class="p">[</span><span class="n">campos</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>    <span class="n">dia</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">campos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>    <span class="n">codigo</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mensagem</span> <span class="o">=</span> <span class="n">campos</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">": "</span><span class="p">)</span>
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>    <span class="n">partes</span> <span class="o">=</span> <span class="n">codigo</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"%"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)</span>
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"momento"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ano</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dia</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">campos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>            <span class="s2">"severidade"</span><span class="p">:</span> <span class="n">SEVERIDADE_POR_NUMERO</span><span class="p">[</span><span class="n">partes</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>            <span class="s2">"equipamento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">"mensagem"</span><span class="p">:</span> <span class="n">mensagem</span><span class="p">}</span>
+<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>
+<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>
+<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_formato_c</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a>    <span class="n">antes</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mensagem</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">" msg="</span><span class="p">)</span>
+<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>    <span class="n">campos</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>    <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">antes</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+<a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>        <span class="n">chave</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">valor</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
+<a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>        <span class="n">campos</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">valor</span>
+<a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"momento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="s2">"ts"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"T"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">),</span>
+<a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a>            <span class="s2">"severidade"</span><span class="p">:</span> <span class="n">SEVERIDADE_C</span><span class="p">[</span><span class="n">campos</span><span class="p">[</span><span class="s2">"sev"</span><span class="p">]],</span>
+<a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a>            <span class="s2">"equipamento"</span><span class="p">:</span> <span class="n">campos</span><span class="p">[</span><span class="s2">"host"</span><span class="p">],</span> <span class="s2">"mensagem"</span><span class="p">:</span> <span class="n">mensagem</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)}</span>
+<a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a>
+<a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a>
+<a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a><span class="k">def</span><span class="w"> </span><span class="nf">detecta_formato</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-23-41" name="__codelineno-23-41" href="#__codelineno-23-41"></a>    <span class="k">if</span> <span class="n">linha</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"ts="</span><span class="p">):</span>
+<a id="__codelineno-23-42" name="__codelineno-23-42" href="#__codelineno-23-42"></a>        <span class="k">return</span> <span class="s2">"C"</span>
+<a id="__codelineno-23-43" name="__codelineno-23-43" href="#__codelineno-23-43"></a>    <span class="k">if</span> <span class="n">linha</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="ow">in</span> <span class="n">MESES</span> <span class="ow">and</span> <span class="s2">"%"</span> <span class="ow">in</span> <span class="n">linha</span><span class="p">:</span>
+<a id="__codelineno-23-44" name="__codelineno-23-44" href="#__codelineno-23-44"></a>        <span class="k">return</span> <span class="s2">"B"</span>
+<a id="__codelineno-23-45" name="__codelineno-23-45" href="#__codelineno-23-45"></a>    <span class="k">if</span> <span class="n">linha</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">and</span> <span class="n">linha</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"-"</span><span class="p">:</span>
+<a id="__codelineno-23-46" name="__codelineno-23-46" href="#__codelineno-23-46"></a>        <span class="k">return</span> <span class="s2">"A"</span>
+<a id="__codelineno-23-47" name="__codelineno-23-47" href="#__codelineno-23-47"></a>    <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-23-48" name="__codelineno-23-48" href="#__codelineno-23-48"></a>
+<a id="__codelineno-23-49" name="__codelineno-23-49" href="#__codelineno-23-49"></a>
+<a id="__codelineno-23-50" name="__codelineno-23-50" href="#__codelineno-23-50"></a><span class="k">def</span><span class="w"> </span><span class="nf">le_linha</span><span class="p">(</span><span class="n">linha</span><span class="p">):</span>
+<a id="__codelineno-23-51" name="__codelineno-23-51" href="#__codelineno-23-51"></a><span class="w">    </span><span class="sd">"""Devolve o alarme normalizado, ou None se a linha nao for de ninguem."""</span>
+<a id="__codelineno-23-52" name="__codelineno-23-52" href="#__codelineno-23-52"></a>    <span class="n">formato</span> <span class="o">=</span> <span class="n">detecta_formato</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-23-53" name="__codelineno-23-53" href="#__codelineno-23-53"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-23-54" name="__codelineno-23-54" href="#__codelineno-23-54"></a>        <span class="k">if</span> <span class="n">formato</span> <span class="o">==</span> <span class="s2">"A"</span><span class="p">:</span>
+<a id="__codelineno-23-55" name="__codelineno-23-55" href="#__codelineno-23-55"></a>            <span class="k">return</span> <span class="n">le_formato_a</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-23-56" name="__codelineno-23-56" href="#__codelineno-23-56"></a>        <span class="k">if</span> <span class="n">formato</span> <span class="o">==</span> <span class="s2">"B"</span><span class="p">:</span>
+<a id="__codelineno-23-57" name="__codelineno-23-57" href="#__codelineno-23-57"></a>            <span class="k">return</span> <span class="n">le_formato_b</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-23-58" name="__codelineno-23-58" href="#__codelineno-23-58"></a>        <span class="k">if</span> <span class="n">formato</span> <span class="o">==</span> <span class="s2">"C"</span><span class="p">:</span>
+<a id="__codelineno-23-59" name="__codelineno-23-59" href="#__codelineno-23-59"></a>            <span class="k">return</span> <span class="n">le_formato_c</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-23-60" name="__codelineno-23-60" href="#__codelineno-23-60"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+<a id="__codelineno-23-61" name="__codelineno-23-61" href="#__codelineno-23-61"></a>        <span class="k">return</span> <span class="kc">None</span>      <span class="c1"># parecia de um formato, mas veio quebrada</span>
+<a id="__codelineno-23-62" name="__codelineno-23-62" href="#__codelineno-23-62"></a>    <span class="k">return</span> <span class="kc">None</span>          <span class="c1"># nao e de nenhum formato conhecido</span>
+<a id="__codelineno-23-63" name="__codelineno-23-63" href="#__codelineno-23-63"></a>
+<a id="__codelineno-23-64" name="__codelineno-23-64" href="#__codelineno-23-64"></a>
+<a id="__codelineno-23-65" name="__codelineno-23-65" href="#__codelineno-23-65"></a><span class="n">por_severidade</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-23-66" name="__codelineno-23-66" href="#__codelineno-23-66"></a><span class="n">descartadas</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-23-67" name="__codelineno-23-67" href="#__codelineno-23-67"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">"trabalho"</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"alarmes_misturados.log"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+<a id="__codelineno-23-68" name="__codelineno-23-68" href="#__codelineno-23-68"></a>    <span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">arquivo</span><span class="p">:</span>
+<a id="__codelineno-23-69" name="__codelineno-23-69" href="#__codelineno-23-69"></a>        <span class="n">linha</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-23-70" name="__codelineno-23-70" href="#__codelineno-23-70"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-23-71" name="__codelineno-23-71" href="#__codelineno-23-71"></a>            <span class="k">continue</span>
+<a id="__codelineno-23-72" name="__codelineno-23-72" href="#__codelineno-23-72"></a>        <span class="n">alarme</span> <span class="o">=</span> <span class="n">le_linha</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-23-73" name="__codelineno-23-73" href="#__codelineno-23-73"></a>        <span class="k">if</span> <span class="n">alarme</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-23-74" name="__codelineno-23-74" href="#__codelineno-23-74"></a>            <span class="n">descartadas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
+<a id="__codelineno-23-75" name="__codelineno-23-75" href="#__codelineno-23-75"></a>            <span class="k">continue</span>
+<a id="__codelineno-23-76" name="__codelineno-23-76" href="#__codelineno-23-76"></a>        <span class="n">sev</span> <span class="o">=</span> <span class="n">alarme</span><span class="p">[</span><span class="s2">"severidade"</span><span class="p">]</span>
+<a id="__codelineno-23-77" name="__codelineno-23-77" href="#__codelineno-23-77"></a>        <span class="n">por_severidade</span><span class="p">[</span><span class="n">sev</span><span class="p">]</span> <span class="o">=</span> <span class="n">por_severidade</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sev</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-23-78" name="__codelineno-23-78" href="#__codelineno-23-78"></a>
+<a id="__codelineno-23-79" name="__codelineno-23-79" href="#__codelineno-23-79"></a><span class="nb">print</span><span class="p">(</span><span class="n">por_severidade</span><span class="p">)</span>
+<a id="__codelineno-23-80" name="__codelineno-23-80" href="#__codelineno-23-80"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">descartadas</span><span class="p">),</span> <span class="s2">"descartadas:"</span><span class="p">)</span>
+<a id="__codelineno-23-81" name="__codelineno-23-81" href="#__codelineno-23-81"></a><span class="k">for</span> <span class="n">linha</span> <span class="ow">in</span> <span class="n">descartadas</span><span class="p">:</span>
+<a id="__codelineno-23-82" name="__codelineno-23-82" href="#__codelineno-23-82"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"  "</span><span class="p">,</span> <span class="n">linha</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>{'CRITICAL': 3, 'ERROR': 1, 'WARNING': 2}
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>4 descartadas:
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>   -- MARK --
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>   Mar  2 14:20:31 SWITCH-NORTE-02 %LINK-X-UPDOWN: Interface Gi0/12, changed state to up
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>   ts=2026-03-02T14:40:00 host=RADIO-OESTE-01
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>   2026-03-02 15:0
+</code></pre></div>
+<p>As linhas ruins caem em dois lugares diferentes, e vale ver cada um:</p>
+<ul>
+<li><code>-- MARK --</code> não é de nenhum formato: <code>detecta_formato</code> devolve <code>None</code> e
+  <code>le_linha</code> chega ao último <code>return None</code>;</li>
+<li>as outras três <strong>parecem</strong> de um formato e quebram dentro do leitor: o código
+  <code>%LINK-X-UPDOWN</code> dá <code>KeyError</code> na tabela de severidades, a linha C sem <code>sev=</code> dá
+  <code>KeyError</code> no dicionário de campos, a linha A cortada dá <code>IndexError</code> no
+  <code>campos[2]</code>. O <code>try</code> pega os três tipos de erro, listados entre parênteses no
+  mesmo <code>except</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># O codigo veio corrompido: no lugar do numero da severidade, um "X".</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">SEVERIDADE_POR_NUMERO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"0"</span><span class="p">:</span> <span class="s2">"EMERGENCY"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">:</span> <span class="s2">"ALERT"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">:</span> <span class="s2">"CRITICAL"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">:</span> <span class="s2">"ERROR"</span><span class="p">,</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>                         <span class="s2">"4"</span><span class="p">:</span> <span class="s2">"WARNING"</span><span class="p">,</span> <span class="s2">"5"</span><span class="p">:</span> <span class="s2">"NOTICE"</span><span class="p">,</span> <span class="s2">"6"</span><span class="p">:</span> <span class="s2">"INFO"</span><span class="p">,</span> <span class="s2">"7"</span><span class="p">:</span> <span class="s2">"DEBUG"</span><span class="p">}</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">partes</span> <span class="o">=</span> <span class="s2">"%LINK-X-UPDOWN"</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"%"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">SEVERIDADE_POR_NUMERO</span><span class="p">[</span><span class="n">partes</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>KeyError: 'X'
+</code></pre></div>
+<p>E o relatório final diz <strong>quantas</strong> linhas foram descartadas e <strong>quais</strong>. Sem isso,
+um fabricante que mudou o formato numa atualização de firmware simplesmente some
+do relatório — e ninguém percebe até o primeiro alarme perdido.</p>
+<h2 id="onde-isso-e-usado-de-verdade">Onde isso é usado de verdade<a class="headerlink" href="#onde-isso-e-usado-de-verdade" title="Permanent link">&para;</a></h2>
+<p>O formato B imita o das <a href="https://www.cisco.com/c/en/us/td/docs/ios/15_0sy/system/messages/15sysmg/sm15syovr.html">mensagens de sistema do Cisco IOS</a>,
+documentado como <code>%FACILIDADE-SEVERIDADE-MNEMÔNICO: texto</code>, em que a severidade é
+um dígito de 0 (emergência) a 7 (depuração). Essa escala de oito níveis é a do
+próprio protocolo syslog, definida na
+<a href="https://datatracker.ietf.org/doc/html/rfc5424#section-6.2.1">RFC 5424, seção 6.2.1</a> —
+por isso a tabela <code>SEVERIDADE_POR_NUMERO</code> do capítulo vale para qualquer
+equipamento que fale syslog, não só para um fabricante. O formato C é o estilo
+chave=valor, conhecido como <a href="https://brandur.org/logfmt">logfmt</a>, comum em
+software de rede mais recente.</p>
+<p>Normalizar logs de fontes diferentes num conjunto de campos comum é exatamente o
+que fazem as plataformas de análise de log e de segurança (SIEM). O
+<a href="https://www.elastic.co/guide/en/ecs/current/index.html">Elastic Common Schema</a>,
+por exemplo, é uma especificação aberta de nomes de campo para que eventos de
+equipamentos e sistemas diferentes possam ser pesquisados e correlacionados juntos
+— o mesmo papel do dicionário de quatro chaves deste capítulo, em escala
+industrial.</p>
+<p>A ideia de <strong>um leitor por formato</strong> é a da biblioteca
+<a href="https://github.com/CiscoTestAutomation/genieparser">Genie Parser</a>, do ecossistema
+pyATS: milhares de parsers, cada um para um comando num sistema operacional de
+equipamento, todos entregando a saída como dicionário Python.</p>
+<p>E a forma de escrever MAC com hífens é a recomendada pelo IEEE nas suas
+<a href="https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf">diretrizes para identificadores EUI</a>;
+a dos dois-pontos é a que a maioria dos equipamentos exibe. Um script que compara
+MACs sem normalizar antes acha que <code>AC-DE-48-00-11-22</code> e <code>ac:de:48:00:11:22</code> são
+equipamentos diferentes.</p>
+<h2 id="erros-comuns-deste-capitulo">Erros comuns deste capítulo<a class="headerlink" href="#erros-comuns-deste-capitulo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Causa provável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pedaço vazio <code>''</code> no meio da lista</td>
+<td><code>split(" ")</code> numa linha com dois espaços seguidos; use <code>split()</code></td>
+</tr>
+<tr>
+<td>a mensagem saiu cortada na primeira palavra</td>
+<td>faltou o <code>maxsplit</code>, ou o <code>split()</code> veio antes do <code>partition(" msg=")</code></td>
+</tr>
+<tr>
+<td><code>KeyError</code> com um número entre aspas, como <code>'3'</code></td>
+<td>a tabela foi escrita com chaves numéricas (<code>3</code>) e a consulta usa texto (<code>"3"</code>)</td>
+</tr>
+<tr>
+<td><code>ValueError: too many values to unpack</code></td>
+<td>desempacotou o resultado de um <code>split</code> que deu mais pedaços que o esperado; use <code>partition</code> quando só há um separador que importa</td>
+</tr>
+<tr>
+<td>o validador aceitou <code>"256.1.1.1"</code></td>
+<td>faltou a condição da faixa, ou ela nunca foi testada com o caso de borda</td>
+</tr>
+<tr>
+<td>um fabricante sumiu do relatório</td>
+<td>as linhas dele caíram todas no descarte; confira a lista de descartadas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resumo">Resumo<a class="headerlink" href="#resumo" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Normalizar</strong> é transformar formatos diferentes numa forma só; o parser de cada
+  formato devolve o mesmo dicionário.</li>
+<li><code>partition(sep)</code> corta na primeira ocorrência e nunca dá erro por falta do
+  separador.</li>
+<li><code>split()</code> sem argumento para log; <code>maxsplit</code> para manter a mensagem inteira.</li>
+<li><code>startswith</code>, <code>isdigit</code> e <code>strip(caracteres)</code> perguntam sobre o texto sem quebrá-lo.</li>
+<li>Diferenças de vocabulário entre fabricantes se resolvem com <strong>tabelas de
+  tradução</strong> (dicionários).</li>
+<li>Detecte o formato pelo sinal mais específico, e despache com <code>if/elif</code>.</li>
+<li>Valide recusando cedo, e teste com os casos de borda.</li>
+<li>A linha que ninguém entende é <strong>descartada e registrada</strong> — e o relatório diz
+  quantas foram.</li>
+</ul>
+<h2 id="para-praticar">Para praticar<a class="headerlink" href="#para-praticar" title="Permanent link">&para;</a></h2>
+<p><a href="../../listas/lista09/">Lista 09 · Parsers de texto</a> — os três leitores, a tabela de
+severidades, a detecção do formato, a validação de IP e de MAC e o resumo de um log
+misturado.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -984,6 +984,8 @@
           
         
       
+        
+      
     
     
     
@@ -1018,6 +1020,11 @@
 
             </a>
             
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
           </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
@@ -1031,6 +1038,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4-texto/09-parsers-texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -1394,6 +1429,8 @@
       
         
       
+        
+      
     
     
     
@@ -1659,6 +1696,34 @@
     
   
     Lista 08 · JSON, datas e exceções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 09 · Parsers de texto
   
 
     
@@ -1998,6 +2063,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formato-do-log-misturado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato do log misturado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uma-advertencia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2185,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formato-do-log-misturado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato do log misturado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uma-advertencia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2243,6 +2330,11 @@ do Colab.</p>
 <td>cadastro dos equipamentos</td>
 <td>JSON</td>
 </tr>
+<tr>
+<td><a href="../../dados/alarmes_misturados.log"><code>alarmes_misturados.log</code></a></td>
+<td>60 alarmes em três formatos de fabricante, com algumas linhas ruins (Unidade 4)</td>
+<td>texto, um por linha</td>
+</tr>
 </tbody>
 </table>
 <h2 id="lendo-direto-do-colab">Lendo direto do Colab<a class="headerlink" href="#lendo-direto-do-colab" title="Permanent link">&para;</a></h2>
@@ -2261,6 +2353,22 @@ do Colab.</p>
 </code></pre></div>
 <p>Cinco campos separados por espaço: data, hora, severidade (<code>CRITICAL</code>, <code>WARNING</code>
 ou <code>INFO</code>), equipamento e a mensagem — que tem um número variável de palavras.</p>
+<h2 id="formato-do-log-misturado">Formato do log misturado<a class="headerlink" href="#formato-do-log-misturado" title="Permanent link">&para;</a></h2>
+<p>O <code>alarmes_misturados.log</code> junta três formatos, como chegam de fabricantes
+diferentes (capítulo 9):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>2026-03-02 01:12:07 WARNING OLT-SUL-03 potencia optica degradada: -27.2 dBm
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Mar  2 01:37:41 SWITCH-NORTE-02 %LINK-3-UPDOWN: Interface Gi0/5, changed state to up
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ts=2026-03-02T00:41:55 host=RADIO-OESTE-01 sev=warn msg="enlace degradado"
+</code></pre></div>
+<ul>
+<li><strong>A</strong> (OLTs e ONUs): data, hora, severidade, equipamento, mensagem;</li>
+<li><strong>B</strong> (switches, estilo syslog Cisco): mês abreviado sem ano, dia, hora,
+  equipamento, <code>%FACILIDADE-SEVERIDADE-MNEMÔNICO:</code> com a severidade de 0 a 7, e a
+  mensagem;</li>
+<li><strong>C</strong> (rádio, estilo chave=valor): <code>ts=</code>, <code>host=</code>, <code>sev=</code> (<code>crit</code>, <code>warn</code>,
+  <code>info</code>) e <code>msg="..."</code>.</li>
+</ul>
+<p>Cinco linhas não são de formato nenhum ou vieram quebradas — de propósito.</p>
 <h2 id="uma-advertencia">Uma advertência<a class="headerlink" href="#uma-advertencia" title="Permanent link">&para;</a></h2>
 <p><strong>Estes dados são sintéticos.</strong> Eles imitam o formato de um log real, mas foram
 gerados por um script, com semente fixa, justamente para poderem ser publicados:

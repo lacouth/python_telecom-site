@@ -18,7 +18,7 @@
         <link rel="prev" href="../avaliacoes/a1-regras/">
       
       
-        <link rel="next" href="../unidade5-modelagem/">
+        <link rel="next" href="09-parsers-texto/">
       
       
         
@@ -986,6 +986,8 @@
           
         
       
+        
+      
     
     
     
@@ -1020,6 +1022,11 @@
 
             </a>
             
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
           </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
@@ -1033,6 +1040,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-parsers-texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -1396,6 +1431,8 @@
       
         
       
+        
+      
     
     
     
@@ -1661,6 +1698,34 @@
     
   
     Lista 08 · JSON, datas e exceções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../listas/lista09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 09 · Parsers de texto
   
 
     
@@ -2107,19 +2172,21 @@ três formatos diferentes porque a rede tem três fabricantes.</p>
 </thead>
 <tbody>
 <tr>
-<td>9. Expressões regulares</td>
-<td>padrão, grupo, captura, validação</td>
-<td>extrair severidade, timestamp e interface de linhas de formatos diferentes; validar IP e MAC</td>
+<td><a href="09-parsers-texto/">9. Parsers de texto</a></td>
+<td>normalização, tabela de tradução, despacho por formato, validação</td>
+<td>juntar num relatório só os alarmes de OLTs, switches e rádios de fabricantes diferentes; validar IP e MAC</td>
 </tr>
 </tbody>
 </table>
-<p>Expressão regular é a ferramenta que se usa quando a estrutura do texto é
-<strong>parecida, mas não igual</strong> — e é também a ferramenta que se usa demais. O
-capítulo insiste no critério: quando o <code>split</code> resolve, use o <code>split</code>.</p>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>O capítulo desta unidade é publicado antes da semana em que é dado.</p>
-</div>
+<p>Esta unidade não traz ferramenta nova de peso. Ela junta o que você já sabe —
+métodos de string, dicionários, funções e <code>try/except</code> — numa técnica que se usa
+todo dia em operação de rede: <strong>um leitor por formato, todos entregando o mesmo
+dicionário</strong>, e a linha que ninguém entende descartada e registrada, nunca
+ignorada em silêncio.</p>
+<p><strong>Ao fim desta unidade você consegue</strong> apontar um script para um log com formatos
+misturados e sair dele com uma contagem por severidade que inclui todos os
+fabricantes — e com a lista do que não foi entendido.</p>
+<p>Lista correspondente: <a href="../listas/lista09/">09</a>.</p>
 
 
 
