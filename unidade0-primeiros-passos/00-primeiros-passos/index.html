@@ -1,0 +1,3725 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Curso de Python para o Tecnólogo em Telecomunicações: ensina programação do zero e aplica cada conceito a logs, inventários, CDRs, KPIs e automação de equipamentos de rede.">
+      
+      
+        <meta name="author" content="lacouth">
+      
+      
+        <link rel="canonical" href="https://lacouth.github.io/python_telecom-site/unidade0-primeiros-passos/00-primeiros-passos/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../rede-marenet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>0. Primeiros passos em programação - Python para Telecomunicações — da lógica ao dado da rede</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0-primeiros-passos-em-programacao" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Python para Telecomunicações — da lógica ao dado da rede" class="md-header__button md-logo" aria-label="Python para Telecomunicações — da lógica ao dado da rede" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python para Telecomunicações — da lógica ao dado da rede
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              0. Primeiros passos em programação
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lacouth/python_telecom" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    python_telecom
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python para Telecomunicações — da lógica ao dado da rede" class="md-nav__button md-logo" aria-label="Python para Telecomunicações — da lógica ao dado da rede" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python para Telecomunicações — da lógica ao dado da rede
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lacouth/python_telecom" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    python_telecom
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../setup/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiente
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ambiente
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/colab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Colab (recomendado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ambiente-local/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python local (opcional)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Semana 0 · Primeiros passos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Semana 0 · Primeiros passos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0. Primeiros passos em programação
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0. Primeiros passos em programação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-estudar-este-capitulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como estudar este capítulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-um-programa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que é um programa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-nomes-que-guardam-valores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variáveis: nomes que guardam valores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-numero-texto-e-verdadeiro-ou-falso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos: número, texto e verdadeiro ou falso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-da-erro-lendo-a-mensagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando dá erro: lendo a mensagem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparacoes-perguntas-de-sim-ou-nao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparações: perguntas de sim ou não
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-decidir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        if: decidir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elif-e-else-mais-de-um-caminho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        elif e else: mais de um caminho
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#and-or-e-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        and, or e not
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while-repetir-enquanto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        while: repetir enquanto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-repetir-para-cada-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for: repetir para cada item
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#juntando-tudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Juntando tudo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uma-primeira-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uma primeira função
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-isso-e-usado-de-verdade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde isso é usado de verdade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erros-comuns-deste-capitulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erros comuns deste capítulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-praticar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para praticar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rede-marenet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A rede da Maré Net
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade1-fundamentos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 1 · Fundamentos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 1 · Fundamentos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/01-ambiente-tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. O ambiente, os tipos e o primeiro script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/02-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Strings: o formato em que a rede fala
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/03-listas-lacos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Listas e os padrões de laço
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1-fundamentos/04-funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Funções: dividir para conseguir testar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade2-colecoes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 2 · Coleções
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 2 · Coleções
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2-colecoes/05-dicionarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Dicionários
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2-colecoes/06-conjuntos-tuplas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Conjuntos, tuplas e inventário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade3-arquivos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 3 · Arquivos e formatos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 3 · Arquivos e formatos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade3-arquivos/07-arquivos-csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arquivos de texto e CSV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade3-arquivos/08-json-datas-excecoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. JSON, datas e exceções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliação 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avaliação 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../avaliacoes/a1-regras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regras e formato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade4-texto/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 4 · Texto e robustez
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 4 · Texto e robustez
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4-texto/09-parsers-texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade5-modelagem/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 5 · Modelagem
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 5 · Modelagem
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade5-modelagem/10-dataclasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Dataclasses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade6-dados/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 6 · Dados e visualização
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 6 · Dados e visualização
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade6-dados/11-pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade6-dados/12-matplotlib-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. matplotlib e KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliação 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avaliação 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../avaliacoes/a2-regras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regras e formato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../unidade7-redes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidade 7 · Redes e automação
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Unidade 7 · Redes e automação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade7-redes/13-apis-rest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. APIs REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade7-redes/14-automacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Automação de equipamentos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cadernos das aulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../listas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas de exercícios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listas de exercícios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 00 · Primeiros passos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 01 · Primeiros scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 02 · Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 03 · Listas e laços
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 04 · Funções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 05 · Dicionários
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 06 · Conjuntos e tuplas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 07 · Arquivos e CSV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 08 · JSON, datas e exceções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 09 · Parsers de texto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 10 · Dataclasses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 11 · pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 12 · matplotlib e KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 13 · APIs REST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../listas/lista14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista 14 · Automação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../projeto/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projeto Final
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projeto Final
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projeto/organizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organizando em arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projeto/temas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temas sugeridos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apêndices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apêndices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/ia-no-curso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IA neste curso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/erros-comuns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Erros comuns do Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dados do curso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheet de Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referências
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../apendices/proximos-passos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Próximos passos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-estudar-este-capitulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como estudar este capítulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-um-programa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que é um programa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-nomes-que-guardam-valores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variáveis: nomes que guardam valores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-numero-texto-e-verdadeiro-ou-falso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos: número, texto e verdadeiro ou falso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-da-erro-lendo-a-mensagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando dá erro: lendo a mensagem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparacoes-perguntas-de-sim-ou-nao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparações: perguntas de sim ou não
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-decidir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        if: decidir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elif-e-else-mais-de-um-caminho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        elif e else: mais de um caminho
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#and-or-e-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        and, or e not
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#while-repetir-enquanto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        while: repetir enquanto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-repetir-para-cada-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for: repetir para cada item
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#juntando-tudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Juntando tudo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uma-primeira-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uma primeira função
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-isso-e-usado-de-verdade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde isso é usado de verdade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erros-comuns-deste-capitulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erros comuns deste capítulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-praticar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para praticar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="0-primeiros-passos-em-programacao">0. Primeiros passos em programação<a class="headerlink" href="#0-primeiros-passos-em-programacao" title="Permanent link">&para;</a></h1>
+<p>Este capítulo é para quem <strong>nunca programou</strong>. Ele vem antes da primeira aula, e
+você estuda sozinho, no seu ritmo: leia com calma, rode cada exemplo e faça o
+<a href="#para-praticar">caderno de estudo</a> do fim. São umas quatro a seis horas, que dá
+para dividir em dois ou três dias.</p>
+<p>No fim, você vai saber o que é um programa, guardar valores em variáveis, fazer o
+programa <strong>decidir</strong> (<code>if</code>) e <strong>repetir</strong> (<code>while</code> e <code>for</code>), e ler o formato de
+função que todos os exercícios do curso usam. É o que a primeira aula dá como
+sabido.</p>
+<p>Se telecomunicações também é novidade para você, leia depois
+<a href="../rede-marenet/">A rede da Maré Net</a>: ela explica, sem fórmula, os termos que
+aparecem nos exemplos (dBm, OLT, alarme, NOC…). Por enquanto basta saber que
+<strong>potência</strong> é a força do sinal que chega pela fibra, medida em <strong>dBm</strong>, e que,
+nessa escala, os números são negativos: <strong>quanto mais negativo, mais fraco</strong>.
+−20 dBm é um sinal bom; −28 dBm é um sinal fraco demais.</p>
+<h2 id="como-estudar-este-capitulo">Como estudar este capítulo<a class="headerlink" href="#como-estudar-este-capitulo" title="Permanent link">&para;</a></h2>
+<p>Você não precisa instalar nada. Abra o <a href="../../setup/colab/">Google Colab</a>, crie um
+caderno novo e, para cada exemplo:</p>
+<ol>
+<li><strong>leia</strong> o código e tente adivinhar o que ele vai mostrar;</li>
+<li><strong>digite</strong> o código numa célula (digitar, e não colar, é o que faz os dedos e a
+   cabeça aprenderem);</li>
+<li>rode com <strong><code>Shift+Enter</code></strong> e compare com a saída mostrada aqui;</li>
+<li><strong>mude alguma coisa</strong> — um número, um texto — e rode de novo.</li>
+</ol>
+<p>O passo 4 é o mais importante. Programar se aprende como se aprende a andar de
+bicicleta: lendo sobre o assunto dá para entender a ideia, mas o equilíbrio só
+vem tentando, e errando.</p>
+<h2 id="o-que-e-um-programa">O que é um programa<a class="headerlink" href="#o-que-e-um-programa" title="Permanent link">&para;</a></h2>
+<p>Um programa é uma <strong>lista de instruções</strong> que o computador segue, uma de cada vez,
+<strong>de cima para baixo</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Um programa e uma receita: as linhas rodam de cima para baixo, uma de cada vez.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"1. abrir o chamado"</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"2. conferir o equipamento"</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"3. fechar o chamado"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1. abrir o chamado
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2. conferir o equipamento
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>3. fechar o chamado
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: uma receita de bolo</p>
+<p>Uma receita diz o que fazer e em que ordem: primeiro bata os ovos, depois
+junte a farinha, depois leve ao forno. Um programa é igual, com uma diferença
+importante: o computador segue a receita <strong>ao pé da letra</strong>. Ele não adivinha
+o que você quis dizer, não pula um passo que parece óbvio e não corrige um
+erro de digitação. Se a receita estiver errada, o bolo sai errado — e a culpa
+é da receita.</p>
+</div>
+<p><code>print(...)</code> é a instrução que <strong>mostra</strong> alguma coisa na tela. O que vai entre
+aspas é mostrado exatamente como está escrito. As linhas que começam com <code>#</code> são
+<strong>comentários</strong>: o Python ignora tudo o que vem depois do <code>#</code>, e eles servem para
+explicar o código a quem lê.</p>
+<h2 id="variaveis-nomes-que-guardam-valores">Variáveis: nomes que guardam valores<a class="headerlink" href="#variaveis-nomes-que-guardam-valores" title="Permanent link">&para;</a></h2>
+<p>Um programa precisa guardar valores para usá-los depois: quantos clientes uma
+central atende, a potência medida agora há pouco. Para isso existem as
+<strong>variáveis</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Uma variavel e um nome que guarda um valor.</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">clientes</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">clientes</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># O mesmo nome pode receber um valor novo: o antigo e descartado.</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">clientes</span> <span class="o">=</span> <span class="mi">31</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">clientes</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># Primeiro o lado direito e calculado (31 + 1), depois o resultado e guardado.</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">clientes</span> <span class="o">=</span> <span class="n">clientes</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">clientes</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>30
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>31
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>32
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: uma etiqueta numa caixa</p>
+<p><code>clientes = 30</code> cola a etiqueta <code>clientes</code> numa caixa e põe o valor <code>30</code>
+dentro. Toda vez que o programa escreve <code>clientes</code>, ele abre a caixa e usa o
+que está lá. Guardar outro valor com o mesmo nome <strong>troca o conteúdo</strong> da
+caixa: o <code>30</code> é jogado fora e o <code>31</code> entra no lugar.</p>
+</div>
+<p>O sinal <code>=</code> <strong>não</strong> quer dizer "é igual", como na matemática. Ele quer dizer
+<strong>"guarde"</strong>: calcule o que está à direita e guarde no nome que está à esquerda.
+Por isso <code>clientes = clientes + 1</code>, que não faz sentido como equação, faz todo
+sentido como instrução: pegue o valor atual de <code>clientes</code> (31), some 1 e guarde o
+resultado (32) de volta em <code>clientes</code>.</p>
+<p>O nome de uma variável pode ter letras, números e o sublinhado <code>_</code>, mas não pode
+começar com número nem ter espaço ou acento. Escolha nomes que digam o que está
+guardado: <code>potencia_dbm</code> diz muito mais do que <code>p</code>.</p>
+<h2 id="tipos-numero-texto-e-verdadeiro-ou-falso">Tipos: número, texto e verdadeiro ou falso<a class="headerlink" href="#tipos-numero-texto-e-verdadeiro-ou-falso" title="Permanent link">&para;</a></h2>
+<p>Todo valor tem um <strong>tipo</strong>, que diz que espécie de dado ele é. No começo, quatro
+tipos resolvem quase tudo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">portas</span> <span class="o">=</span> <span class="mi">16</span>              <span class="c1"># int: numero inteiro</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>         <span class="c1"># float: numero com casas decimais (ponto, nao virgula)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">nome</span> <span class="o">=</span> <span class="s2">"OLT-CENTRO-01"</span>   <span class="c1"># str: texto, sempre entre aspas</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">no_ar</span> <span class="o">=</span> <span class="kc">True</span>             <span class="c1"># bool: verdadeiro (True) ou falso (False)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">portas</span><span class="p">))</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">potencia</span><span class="p">))</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nome</span><span class="p">))</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">no_ar</span><span class="p">))</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># O tipo muda o que o + faz: com numeros, soma; com textos, emenda.</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"3"</span> <span class="o">+</span> <span class="s2">"4"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&lt;class 'int'&gt;
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>&lt;class 'float'&gt;
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>&lt;class 'str'&gt;
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>&lt;class 'bool'&gt;
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>7
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>34
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>O que guarda</th>
+<th>Exemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td>número inteiro</td>
+<td><code>16</code>, <code>0</code>, <code>-3</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>número com casas decimais</td>
+<td><code>-21.4</code>, <code>99.5</code></td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td>texto (<em>string</em>), sempre entre aspas</td>
+<td><code>"OLT-CENTRO-01"</code>, <code>"34"</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>verdadeiro ou falso</td>
+<td><code>True</code>, <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Duas coisas pegam quem está começando:</p>
+<ul>
+<li>a casa decimal é marcada com <strong>ponto</strong>, e não com vírgula: <code>-21.4</code>;</li>
+<li><code>"34"</code> entre aspas é <strong>texto</strong>, e não número. Por isso <code>"3" + "4"</code> dá <code>"34"</code>: com
+  textos, o <code>+</code> emenda um no outro, como duas peças de trem.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: a unidade de medida</p>
+<p>Na conta da padaria, "3 pães + 4 pães" dá 7 pães, mas "3 pães + 4 reais" não
+dá nada que faça sentido. O tipo é a "unidade" do valor em Python: ele decide
+o que cada operação faz com o valor e quais operações são permitidas.</p>
+</div>
+<h2 id="quando-da-erro-lendo-a-mensagem">Quando dá erro: lendo a mensagem<a class="headerlink" href="#quando-da-erro-lendo-a-mensagem" title="Permanent link">&para;</a></h2>
+<p>Errar é a parte normal de programar — quem programa há vinte anos erra todo dia.
+O que muda com a experiência é a velocidade de <strong>ler a mensagem de erro</strong> e achar
+a causa. Um nome digitado errado:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Um nome digitado errado so aparece quando a linha roda.</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">potencia_dbm</span> <span class="o">=</span> <span class="o">-</span><span class="mf">21.4</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia_dmb</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>NameError: name 'potencia_dmb' is not defined. Did you mean: 'potencia_dbm'?
+</code></pre></div>
+<p>A mensagem completa tem várias linhas; <strong>leia de baixo para cima</strong>. A última linha
+diz o <strong>tipo</strong> do erro (<code>NameError</code>: um nome que não existe) e o que aconteceu. Um
+pouco acima, a mensagem mostra a <strong>linha</strong> do programa em que o erro apareceu. Aqui,
+o Python ainda sugere a correção: <em>Did you mean: 'potencia_dbm'?</em> ("você quis
+dizer…?").</p>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: a luz no painel do carro</p>
+<p>Quando acende uma luz no painel, ela não diz "o carro quebrou": diz <em>qual</em>
+sistema tem problema. A mensagem de erro é essa luz. Não se assuste com o
+vermelho — leia o que está escrito, porque quase sempre a resposta está lá.</p>
+</div>
+<h2 id="comparacoes-perguntas-de-sim-ou-nao">Comparações: perguntas de sim ou não<a class="headerlink" href="#comparacoes-perguntas-de-sim-ou-nao" title="Permanent link">&para;</a></h2>
+<p>Para decidir alguma coisa, o programa primeiro precisa <strong>perguntar</strong>. As
+comparações são perguntas cuja resposta é <code>True</code> (sim) ou <code>False</code> (não):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">24.0</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">)</span>     <span class="c1"># a potencia esta abaixo de -27?</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">)</span>     <span class="c1"># esta acima de -27?</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia</span> <span class="o">==</span> <span class="o">-</span><span class="mf">24.0</span><span class="p">)</span>  <span class="c1"># dois sinais de igual: PERGUNTA se e igual</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia</span> <span class="o">!=</span> <span class="o">-</span><span class="mf">24.0</span><span class="p">)</span>  <span class="c1"># e diferente?</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>False
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>True
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>True
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>False
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Pergunta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;</code> / <code>&gt;</code></td>
+<td>é menor? / é maior?</td>
+</tr>
+<tr>
+<td><code>&lt;=</code> / <code>&gt;=</code></td>
+<td>é menor ou igual? / é maior ou igual?</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>é igual? (<strong>dois</strong> sinais de igual)</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>é diferente?</td>
+</tr>
+</tbody>
+</table>
+<p>Atenção aos números negativos: −24 é <strong>maior</strong> que −27, porque está mais perto do
+zero (e o sinal de −24 dBm é mais forte que o de −27 dBm). Pense no termômetro:
+−24 °C é menos frio que −27 °C.</p>
+<h2 id="if-decidir"><code>if</code>: decidir<a class="headerlink" href="#if-decidir" title="Permanent link">&para;</a></h2>
+<p>O <code>if</code> ("se") executa um bloco de instruções <strong>só se</strong> a pergunta der <code>True</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">28.5</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">if</span> <span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"ALERTA: sinal fraco"</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"abrir chamado para a equipe de campo"</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"fim da verificacao"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ALERTA: sinal fraco
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>abrir chamado para a equipe de campo
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>fim da verificacao
+</code></pre></div>
+<p>Repare em três detalhes, porque o Python exige todos eles:</p>
+<ul>
+<li>a linha do <code>if</code> termina com <strong>dois-pontos</strong> <code>:</code>;</li>
+<li>as linhas que pertencem ao <code>if</code> ficam <strong>recuadas</strong> quatro espaços (no Colab, a
+  tecla <code>Tab</code> faz isso). Esse recuo se chama <strong>indentação</strong>, e é ele que diz o que
+  está "dentro" do <code>if</code>;</li>
+<li>a primeira linha <strong>sem</strong> recuo (<code>print("fim da verificacao")</code>) já está fora do
+  <code>if</code>: ela roda sempre, dê a pergunta <code>True</code> ou <code>False</code>.</li>
+</ul>
+<p>Troque <code>-28.5</code> por <code>-20.0</code> e rode de novo: as duas linhas do alerta somem, e só o
+"fim da verificacao" aparece.</p>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: o porteiro da festa</p>
+<p>O porteiro olha a pulseira de cada pessoa: <strong>se</strong> tem pulseira, ela entra.
+Quem não tem, não entra, e a festa continua do mesmo jeito. O <code>if</code> é o
+porteiro, e o bloco recuado é o que acontece só com quem passou pela porta.</p>
+</div>
+<p>Os dois erros mais comuns com o <code>if</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Um sinal de igual guarda; dois perguntam. No if, a pergunta e ==.</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">28.0</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">if</span> <span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">28.0</span><span class="p">:</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"igual"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>SyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?
+</code></pre></div>
+<p>Um <code>=</code> sozinho <strong>guarda</strong>; para <strong>perguntar</strong> se é igual, são dois: <code>==</code>. O Python
+até sugere a troca. E esquecer o recuo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># O que esta "dentro" do if precisa estar recuado.</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">28.0</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">if</span> <span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"sinal fraco"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>IndentationError: expected an indented block after 'if' statement on line 3
+</code></pre></div>
+<p>"<em>expected an indented block</em>" quer dizer "eu esperava um bloco recuado": depois
+de um <code>if</code> com dois-pontos, tem de vir pelo menos uma linha recuada.</p>
+<h2 id="elif-e-else-mais-de-um-caminho"><code>elif</code> e <code>else</code>: mais de um caminho<a class="headerlink" href="#elif-e-else-mais-de-um-caminho" title="Permanent link">&para;</a></h2>
+<p>Muitas vezes a decisão tem mais de duas saídas. Uma potência pode estar boa, pedir
+atenção ou estar crítica:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">26.0</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">if</span> <span class="n">potencia</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">25</span><span class="p">:</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"bom"</span><span class="p">)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">elif</span> <span class="n">potencia</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">27</span><span class="p">:</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"atencao"</span><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"critico"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>atencao
+</code></pre></div>
+<ul>
+<li><code>if</code>: a primeira pergunta;</li>
+<li><code>elif</code> ("senão, se"): só é perguntado se as de cima deram <code>False</code>;</li>
+<li><code>else</code> ("senão"): o que sobra, quando nenhuma pergunta deu <code>True</code>. Ele não tem
+  pergunta.</li>
+</ul>
+<p>O Python pergunta <strong>de cima para baixo</strong> e para na <strong>primeira</strong> que der <code>True</code>: só
+um dos blocos roda. Com −26: é <code>&gt;= -25</code>? Não. É <code>&gt;= -27</code>? Sim → "atencao", e o
+resto é pulado. Teste com −20, −26 e −30 e veja cada caminho.</p>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: a triagem do pronto-socorro</p>
+<p>Na triagem, o enfermeiro pergunta em ordem: "é caso de risco de vida?" →
+vermelho. "Senão, é urgente?" → amarelo. "Senão" → verde. Cada paciente sai
+com <strong>uma</strong> cor só, e a ordem das perguntas importa. O NOC — a central que
+vigia a rede do provedor — classifica os alarmes do mesmo jeito.</p>
+</div>
+<h2 id="and-or-e-not"><code>and</code>, <code>or</code> e <code>not</code><a class="headerlink" href="#and-or-e-not" title="Permanent link">&para;</a></h2>
+<p>Para juntar perguntas:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">28.0</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">em_servico</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># and: as duas condicoes precisam ser verdadeiras.</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">em_servico</span> <span class="ow">and</span> <span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">)</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># or: basta uma das duas.</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span> <span class="ow">or</span> <span class="n">potencia</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># not: inverte.</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nb">print</span><span class="p">(</span><span class="ow">not</span> <span class="n">em_servico</span><span class="p">)</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="k">if</span> <span class="n">em_servico</span> <span class="ow">and</span> <span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">:</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"cliente ativo com sinal fraco: abrir chamado"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>True
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>True
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>False
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>cliente ativo com sinal fraco: abrir chamado
+</code></pre></div>
+<ul>
+<li><code>a and b</code> ("e"): <code>True</code> só se <strong>as duas</strong> forem <code>True</code>;</li>
+<li><code>a or b</code> ("ou"): <code>True</code> se <strong>pelo menos uma</strong> for <code>True</code>;</li>
+<li><code>not a</code> ("não"): inverte — <code>True</code> vira <code>False</code>, e o contrário.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: a regra do estacionamento</p>
+<p>"Pode estacionar quem é morador <strong>e</strong> tem vaga": precisa das duas coisas.
+"Entra de graça quem é criança <strong>ou</strong> idoso": basta uma. O <code>and</code> é exigente;
+o <code>or</code> é generoso.</p>
+</div>
+<h2 id="while-repetir-enquanto"><code>while</code>: repetir enquanto<a class="headerlink" href="#while-repetir-enquanto" title="Permanent link">&para;</a></h2>
+<p>Agora, repetir. O <code>while</code> ("enquanto") repete um bloco <strong>enquanto</strong> a pergunta der
+<code>True</code>. Cada vez que o sinal passa por um divisor (<em>splitter</em>) que o reparte em
+dois, ele perde metade da potência — em dBm, perder metade é perder 3. Quantos
+divisores cabem antes de o sinal ficar fraco demais?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Cada divisor de sinal (splitter) 1:2 corta a potencia pela metade: -3 dB.</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># Quantos divisores cabem antes de o sinal chegar a -27 dBm?</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">potencia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">15.0</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">divisores</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">while</span> <span class="n">potencia</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">:</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span class="n">potencia</span> <span class="o">=</span> <span class="n">potencia</span> <span class="o">-</span> <span class="mi">3</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span class="n">divisores</span> <span class="o">=</span> <span class="n">divisores</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"com"</span><span class="p">,</span> <span class="n">divisores</span><span class="p">,</span> <span class="s2">"divisores:"</span><span class="p">,</span> <span class="n">potencia</span><span class="p">,</span> <span class="s2">"dBm"</span><span class="p">)</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"total:"</span><span class="p">,</span> <span class="n">divisores</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>com 1 divisores: -18.0 dBm
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>com 2 divisores: -21.0 dBm
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>com 3 divisores: -24.0 dBm
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>com 4 divisores: -27.0 dBm
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>total: 4
+</code></pre></div>
+<p>A cada <strong>volta</strong>, o Python faz a pergunta (<code>potencia &gt; -27</code>?). Se der <code>True</code>, roda o
+bloco recuado e volta para perguntar de novo. Quando a potência chega a −27, a
+pergunta dá <code>False</code> (−27 não é maior que −27), e o programa segue para a linha
+depois do bloco.</p>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: encher o balde</p>
+<p>"<strong>Enquanto</strong> o balde não chegar na marca, jogue mais uma caneca de água." Você
+confere a marca antes de cada caneca, e para quando chega nela. Se você
+esquecesse de jogar a água, conferiria a marca para sempre.</p>
+</div>
+<p>É por isso que o bloco do <code>while</code> precisa <strong>mudar alguma coisa</strong> que a pergunta
+usa (aqui, <code>potencia = potencia - 3</code>). Sem essa linha, a potência nunca muda, a
+pergunta dá <code>True</code> para sempre e o programa não termina: é o <strong>laço infinito</strong>. Se
+acontecer, pare a célula no botão ■ do Colab.</p>
+<p><code>divisores = divisores + 1</code> é um <strong>contador</strong>: ele começa em zero antes do laço e
+ganha 1 a cada volta. Você vai usar esse padrão o curso inteiro.</p>
+<h2 id="for-repetir-para-cada-item"><code>for</code>: repetir para cada item<a class="headerlink" href="#for-repetir-para-cada-item" title="Permanent link">&para;</a></h2>
+<p>O <code>for</code> ("para cada") repete o bloco <strong>uma vez para cada item</strong> de uma sequência.
+A sequência mais simples é o <code>range</code>, que gera números:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># range(4) produz 0, 1, 2 e 3: quatro voltas, comecando do zero.</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">for</span> <span class="n">volta</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"volta"</span><span class="p">,</span> <span class="n">volta</span><span class="p">)</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># range(1, 5) comeca no 1 e para ANTES do 5.</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">for</span> <span class="n">porta</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"testando a porta"</span><span class="p">,</span> <span class="n">porta</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>volta 0
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>volta 1
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>volta 2
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>volta 3
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>testando a porta 1
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>testando a porta 2
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>testando a porta 3
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>testando a porta 4
+</code></pre></div>
+<ul>
+<li>em <code>for volta in range(4)</code>, a variável <code>volta</code> vale 0 na primeira volta, 1 na
+  segunda, e assim até 3. São <strong>quatro</strong> voltas, e a contagem <strong>começa no zero</strong> —
+  um costume da programação que você vai encontrar em todo lugar;</li>
+<li><code>range(1, 5)</code> começa no 1 e para <strong>antes</strong> do 5: 1, 2, 3 e 4.</li>
+</ul>
+<p>O <code>for</code> também percorre uma lista de valores escrita entre colchetes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># O for tambem percorre uma lista de valores pronta, um de cada vez.</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">for</span> <span class="n">potencia</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.5</span><span class="p">]:</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"medicao:"</span><span class="p">,</span> <span class="n">potencia</span><span class="p">,</span> <span class="s2">"dBm"</span><span class="p">)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"fim"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>medicao: -21.4 dBm
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>medicao: -28.0 dBm
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>medicao: -19.5 dBm
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>fim
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: a chamada na sala de aula</p>
+<p>O professor pega a lista de presença e, <strong>para cada</strong> nome da lista, chama o
+nome e marca a presença. Ele não precisa saber de antemão quantos alunos são:
+começa no primeiro, vai até o último e para. O <code>for</code> é essa chamada; a
+variável (<code>potencia</code>) é o nome da vez.</p>
+</div>
+<p><strong><code>while</code> ou <code>for</code>?</strong> Use <code>for</code> quando você sabe <strong>sobre o que</strong> vai repetir: cada
+item de uma lista, cada número de 1 a 16. Use <code>while</code> quando você não sabe quantas
+voltas serão, só <strong>quando parar</strong> — como no balde e nos divisores. No curso, o
+<code>for</code> aparece muito mais.</p>
+<h2 id="juntando-tudo">Juntando tudo<a class="headerlink" href="#juntando-tudo" title="Permanent link">&para;</a></h2>
+<p>Um <code>for</code> com um <code>if</code> dentro e um contador — o formato de boa parte dos programas
+que você vai escrever. Das medições de potência abaixo, quantas estão abaixo do
+limite de −27 dBm?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">medicoes</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">21.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">19.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">24.8</span><span class="p">]</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">abaixo</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">for</span> <span class="n">potencia</span> <span class="ow">in</span> <span class="n">medicoes</span><span class="p">:</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="k">if</span> <span class="n">potencia</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">27</span><span class="p">:</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>        <span class="n">abaixo</span> <span class="o">=</span> <span class="n">abaixo</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">potencia</span><span class="p">,</span> <span class="s2">"-&gt; abaixo do limite"</span><span class="p">)</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"total abaixo do limite:"</span><span class="p">,</span> <span class="n">abaixo</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>-28.0 -&gt; abaixo do limite
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>-27.3 -&gt; abaixo do limite
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>total abaixo do limite: 2
+</code></pre></div>
+<p>Leia o recuo com cuidado, porque ele conta a história do programa:</p>
+<ul>
+<li><code>abaixo = 0</code> está <strong>antes</strong> do <code>for</code>: roda uma vez só;</li>
+<li>o <code>if</code> está <strong>dentro</strong> do <code>for</code> (quatro espaços): roda uma vez para cada medição;</li>
+<li>as duas linhas depois do <code>if</code> estão <strong>dentro do <code>if</code></strong> (oito espaços): rodam só
+  para as medições abaixo do limite;</li>
+<li>o último <code>print</code> está <strong>fora</strong> de tudo: roda uma vez, no fim.</li>
+</ul>
+<p>Mude um recuo e o programa faz outra coisa. Experimente pôr o último <code>print</code> com
+quatro espaços e veja o total aparecer a cada volta.</p>
+<h2 id="uma-primeira-funcao">Uma primeira função<a class="headerlink" href="#uma-primeira-funcao" title="Permanent link">&para;</a></h2>
+<p>Todos os exercícios do curso têm o mesmo formato: uma <strong>função</strong> para você
+completar. Uma função é um pedaço de programa com nome, que <strong>recebe</strong> valores,
+faz uma conta e <strong>devolve</strong> o resultado:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">margem</span><span class="p">(</span><span class="n">potencia</span><span class="p">,</span> <span class="n">sensibilidade</span><span class="p">):</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="sd">"""Devolve quantos dB a potencia esta acima da sensibilidade."""</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>    <span class="n">resultado</span> <span class="o">=</span> <span class="n">potencia</span> <span class="o">-</span> <span class="n">sensibilidade</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>    <span class="k">return</span> <span class="n">resultado</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">margem</span><span class="p">(</span><span class="o">-</span><span class="mf">21.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">27</span><span class="p">))</span>    <span class="c1"># usa a funcao e mostra o que ela devolveu</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="n">folga</span> <span class="o">=</span> <span class="n">margem</span><span class="p">(</span><span class="o">-</span><span class="mf">26.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">27</span><span class="p">)</span>   <span class="c1"># guarda o que ela devolveu numa variavel</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">folga</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>5.5
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>1.0
+</code></pre></div>
+<ul>
+<li><code>def margem(potencia, sensibilidade):</code> <strong>define</strong> a função: o nome dela é
+  <code>margem</code>, e ela recebe dois valores, que dentro dela se chamam <code>potencia</code> e
+  <code>sensibilidade</code>;</li>
+<li>a linha entre aspas triplas diz em português o que a função faz;</li>
+<li><code>return resultado</code> <strong>devolve</strong> o resultado para quem chamou a função;</li>
+<li>definir não executa nada: a função só roda quando alguém a <strong>chama</strong>, como em
+  <code>margem(-21.5, -27)</code>. Aí <code>potencia</code> vale −21,5, <code>sensibilidade</code> vale −27, e a
+  chamada inteira "vira" o valor devolvido, 5,5.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">💡 Pense assim: a máquina de café</p>
+<p>Você põe a cápsula e a água (os valores que a função <strong>recebe</strong>), a máquina
+faz o trabalho lá dentro, e sai o café (o que ela <strong>devolve</strong>). Você não
+precisa ver o que acontece dentro para usar a máquina, e pode usá-la quantas
+vezes quiser, com cápsulas diferentes.</p>
+</div>
+<p><code>return</code> e <code>print</code> <strong>não</strong> são a mesma coisa. O <code>print</code> só mostra na tela; o
+<code>return</code> entrega o valor para o programa continuar usando — guardar numa variável,
+comparar, somar. Os testes automáticos dos exercícios conferem o que a função
+<strong>devolve</strong>: uma função que só faz <code>print</code> e esquece o <code>return</code> devolve <code>None</code>
+("nada"), e o teste reprova. O capítulo 4 volta às funções com calma.</p>
+<h2 id="onde-isso-e-usado-de-verdade">Onde isso é usado de verdade<a class="headerlink" href="#onde-isso-e-usado-de-verdade" title="Permanent link">&para;</a></h2>
+<p>Por trás de todo sistema de monitoramento de rede há um laço e um <code>if</code>. O
+<a href="https://www.zabbix.com/documentation/current/en/manual/config/triggers">Zabbix</a>,
+um dos sistemas de monitoramento mais usados em provedores, repete a coleta de cada
+equipamento de tempos em tempos (o laço) e, a cada valor coletado, testa uma
+<strong>condição de disparo</strong> (<em>trigger</em>) — "a potência está abaixo de −27 dBm?". Quando
+a condição dá verdadeira, ele abre um alarme, com a severidade decidida por
+condições em sequência, como no <code>if</code>/<code>elif</code>/<code>else</code> deste capítulo. O exemplo de
+"Juntando tudo" é uma versão pequena desse sistema.</p>
+<h2 id="erros-comuns-deste-capitulo">Erros comuns deste capítulo<a class="headerlink" href="#erros-comuns-deste-capitulo" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Causa provável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NameError: name '...' is not defined</code></td>
+<td>nome digitado diferente de como foi criado, ou a célula que cria a variável não foi rodada</td>
+</tr>
+<tr>
+<td><code>SyntaxError: invalid syntax</code> no <code>if</code></td>
+<td><code>=</code> no lugar de <code>==</code>, ou faltou o <code>:</code> no fim da linha</td>
+</tr>
+<tr>
+<td><code>IndentationError: expected an indented block</code></td>
+<td>a linha depois do <code>if</code>, do <code>for</code>, do <code>while</code> ou do <code>def</code> não está recuada</td>
+</tr>
+<tr>
+<td><code>IndentationError: unexpected indent</code></td>
+<td>espaço sobrando no começo de uma linha que não devia estar recuada</td>
+</tr>
+<tr>
+<td>o programa não termina</td>
+<td><code>while</code> cuja pergunta nunca fica <code>False</code>: faltou mudar a variável dentro do laço</td>
+</tr>
+<tr>
+<td>o total aparece várias vezes</td>
+<td>o <code>print</code> do fim está recuado, dentro do laço</td>
+</tr>
+<tr>
+<td><code>"3" + "4"</code> deu <code>"34"</code></td>
+<td>os valores são texto (estão entre aspas), e não números</td>
+</tr>
+<tr>
+<td>o teste diz que a função devolveu <code>None</code></td>
+<td>faltou o <code>return</code> (ou foi usado <code>print</code> no lugar dele)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resumo">Resumo<a class="headerlink" href="#resumo" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Um programa é uma lista de instruções executadas de cima para baixo, ao pé da
+  letra.</li>
+<li><code>nome = valor</code> guarda o valor no nome; <code>=</code> é "guarde", <code>==</code> é "é igual?".</li>
+<li>Tipos básicos: <code>int</code>, <code>float</code> (com ponto), <code>str</code> (entre aspas) e <code>bool</code>
+  (<code>True</code>/<code>False</code>).</li>
+<li>A mensagem de erro se lê de baixo para cima: o tipo do erro e a linha.</li>
+<li><code>if</code> / <code>elif</code> / <code>else</code> escolhem <strong>um</strong> caminho; <code>and</code>, <code>or</code> e <code>not</code> juntam
+  perguntas.</li>
+<li><code>while</code> repete enquanto a pergunta for verdadeira; <code>for</code> repete para cada item.</li>
+<li>O recuo (quatro espaços) diz o que está dentro de cada bloco.</li>
+<li><code>def</code> cria uma função, que recebe valores e devolve o resultado com <code>return</code>.</li>
+</ul>
+<h2 id="para-praticar">Para praticar<a class="headerlink" href="#para-praticar" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://colab.research.google.com/github/lacouth/python_telecom-site/blob/main/notebooks/aula00.ipynb">Caderno de estudo 00</a>:
+  cada ideia deste capítulo, passo a passo, com exercícios que se corrigem
+  sozinhos. Faça depois de ler o capítulo.</li>
+<li><a href="../../listas/lista00/">Lista 00 · Primeiros passos</a> — dez exercícios curtos
+  sobre variáveis, decisões e repetições.</li>
+<li>Depois leia <a href="../rede-marenet/">A rede da Maré Net</a>, e você está pronto para a
+  primeira aula.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
