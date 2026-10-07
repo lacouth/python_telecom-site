@@ -3007,7 +3007,8 @@ devolva <code>(None, None)</code>.</p>
 <h2 id="exercicio-03">Exercício 03<a class="headerlink" href="#exercicio-03" title="Permanent link">&para;</a></h2>
 <p>Escreva <code>dentro_da_faixa(valor, minimo=-25.0, maximo=-8.0)</code>, que devolve <code>True</code>
 se o valor estiver <strong>dentro</strong> da faixa (inclusive nas pontas) e <code>False</code> caso
-contrário. Os padrões são a faixa aceitável de potência numa ONU.</p>
+contrário. Os padrões são a faixa <strong>boa</strong> de potência numa ONU — a mesma da Lista
+01: abaixo de −25 dBm o sinal já pede atenção, e abaixo de −27 a ONU pode perdê-lo.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">dentro_da_faixa</span><span class="p">(</span><span class="o">-</span><span class="mf">21.0</span><span class="p">)</span>           <span class="c1"># -&gt; True</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">dentro_da_faixa</span><span class="p">(</span><span class="o">-</span><span class="mf">30.0</span><span class="p">)</span>           <span class="c1"># -&gt; False</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">dentro_da_faixa</span><span class="p">(</span><span class="o">-</span><span class="mf">30.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># -&gt; True</span>
